@@ -9,7 +9,7 @@
 <link rel="icon" type="image/png" href="assets/logo/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,600&family=Outfit:wght@300;400;500;600&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -30,8 +30,8 @@
 <div class="top-actions">
   <div class="lang" id="langSwitch" role="group" aria-label="Language" data-i18n-attr="aria-label:lang.label">
     <span class="lang__thumb" aria-hidden="true"></span>
-    <button type="button" class="lang__btn" data-lang="en" aria-pressed="true" lang="en">EN</button>
-    <button type="button" class="lang__btn" data-lang="vi" aria-pressed="false" lang="vi">VI</button>
+    <button type="button" class="lang__btn" data-lang="vi" aria-pressed="true" lang="vi">VI</button>
+    <button type="button" class="lang__btn" data-lang="en" aria-pressed="false" lang="en">EN</button>
   </div>
   <a href="#contact" class="btn btn--gold btn--icon cta-fixed">
     <svg class="btn__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10" /></svg>
@@ -68,47 +68,33 @@
     <div class="hero__stage">
       <svg class="hero__pattern" id="heroPattern" aria-hidden="true"></svg>
 
-      <a href="#" class="logo hero__logo" aria-label="Champasen home" data-i18n-attr="aria-label:logo.home">
-        <span class="hero__logo-set hero__logo-set--dark"><img src="assets/logo/mark-small.png" alt="" class="logo__mark"><img src="assets/logo/wordmark.png" alt="Champasen" class="logo__word"></span>
-        <span class="hero__logo-set hero__logo-set--light" id="heroLogoLight" aria-hidden="true"><img src="assets/logo/mark-light.png" alt="" class="logo__mark"><img src="assets/logo/wordmark-light.png" alt="" class="logo__word"></span>
+      <a href="#" class="logo logo--light hero__logo" aria-label="Champasen home" data-i18n-attr="aria-label:logo.home">
+        <img src="assets/logo/mark-light.png" alt="" class="logo__mark"><img src="assets/logo/wordmark-light.png" alt="Champasen" class="logo__word">
       </a>
 
-      <div class="hero__copy" id="heroCopy">
-        <p class="eyebrow" data-i18n="hero.eyebrow">Quality animal feed</p>
-        <h1 class="hero__title"><span data-i18n="hero.title">Feed that helps every farm</span> <span class="mark"><span data-i18n="hero.titleMark">grow</span></span></h1>
-        <p class="hero__lead" data-i18n="hero.lead">Balanced, high-quality feed for poultry, livestock and aquaculture, made with care and delivered across the region.</p>
-        <div class="hero__actions">
-          <a href="#what-we-do" class="btn btn--purple" data-i18n="hero.cta">Explore our products</a>
-          <a href="#contact" class="text-link"><span data-i18n="hero.talk">Talk to our team</span> <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5"/></svg></a>
-        </div>
-      </div>
-
-      <div class="hero__slot" id="heroSlot" aria-hidden="true"></div>
-      <svg class="clip-defs" width="0" height="0" aria-hidden="true" focusable="false">
-        <defs><clipPath id="heroPetalClip" clipPathUnits="userSpaceOnUse"><path id="heroPetalPath" d="M50 0C63 16 90 30 95 58C100 86 78 100 50 100C22 100 0 86 5 58C10 30 37 16 50 0Z"/></clipPath></defs>
-      </svg>
       <div class="hero__media" id="heroMedia">
         <img src="assets/img/hero-farmer.jpg" alt="A Champasen specialist checking free-range chickens at a feeding trough" data-i18n-attr="alt:hero.imgAlt">
         <div class="hero__shade"></div>
       </div>
 
+      <div class="hero__question" id="heroQuestion">
+        <h1 class="hero__title"><span data-i18n="hero.q1">What if better feed could</span>
+          <span class="accent"><span data-i18n="hero.accA">gr</span><span class="bubble" id="bubble"></span><span data-i18n="hero.accB">w</span></span>
+          <span data-i18n="hero.q2">healthier animals, stronger farms and a fairer future?</span></h1>
+      </div>
+
       <div class="hero__statement" id="heroStatement" aria-hidden="true">
         <p class="statement">
           <span class="line"><span data-i18n="hero.st1">We believe</span></span>
-          <span class="line"><span><span class="mark mark--hero" id="statementMark"><span data-i18n="hero.st2">better feed</span></span></span></span>
+          <span class="line line--accent"><span data-i18n="hero.st2">better feed</span></span>
           <span class="line"><span data-i18n="hero.st3">grows stronger farms</span></span>
         </p>
       </div>
 
       <div class="hero__cluster" id="heroCluster" aria-hidden="true"></div>
 
-      <div class="hero__marquee" id="heroMarquee" aria-hidden="true">
-        <div class="marquee__track"></div>
-      </div>
-
       <button class="scroll-cue" id="scrollCue" aria-label="Scroll down" data-i18n-attr="aria-label:scroll.aria">
-        <span class="scroll-cue__btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v13M6 12l6 6 6-6"/></svg></span>
-        <span class="scroll-cue__label" data-i18n="scroll.label">Scroll to explore</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v13M6 12l6 6 6-6"/></svg>
       </button>
     </div>
   </section>
@@ -117,7 +103,7 @@
   <section class="about" id="about">
     <div class="container">
       <div class="about__intro">
-        <h2 class="h-60 reveal"><span data-i18n="about.title">Feed made with care,</span> <span class="mark"><span data-i18n="about.titleMark">from field to farm</span></span></h2>
+        <h2 class="h-60 reveal"><span data-i18n="about.title">Feed made with care,</span> <em data-i18n="about.titleMark">from field to farm</em></h2>
         <p class="t-24 reveal" data-i18n="about.text">Champasen produces balanced, high-quality feed for poultry, livestock and aquaculture, and delivers it to farms and distributors across the region and beyond.</p>
         <a href="#what-we-do" class="btn btn--purple reveal" data-i18n="about.btn">About Champasen</a>
       </div>
@@ -129,7 +115,7 @@
   <section class="journey" id="journey" aria-labelledby="journeyTitle">
     <div class="journey__head container">
       <p class="eyebrow" data-i18n="journey.eyebrow">Our journey</p>
-      <h2 class="h-60" id="journeyTitle"><span data-i18n="journey.title">From one mill to</span> <span class="mark"><span data-i18n="journey.titleMark">12 export markets</span></span></h2>
+      <h2 class="h-60" id="journeyTitle"><span data-i18n="journey.title">From one mill to</span> <em data-i18n="journey.titleMark">12 export markets</em></h2>
     </div>
     <div class="journey__viewport">
       <div class="journey__track" id="journeyTrack">
@@ -191,7 +177,7 @@
   <section class="impact" id="impact">
     <img src="assets/logo/mark-small.png" alt="" class="impact__mark" aria-hidden="true">
     <div class="container">
-      <h2 class="h-60 reveal"><span data-i18n="impact.title">Growing together,</span> <span class="mark"><span data-i18n="impact.titleMark">year after year</span></span></h2>
+      <h2 class="h-60 reveal"><span data-i18n="impact.title">Growing together,</span> <em data-i18n="impact.titleMark">year after year</em></h2>
       <div class="stats">
         <div class="stat reveal"><span class="stat__num" data-count="25" data-suffix="+">0</span><span class="stat__label" data-i18n="stat.years">Years of feed expertise</span></div>
         <div class="stat reveal"><span class="stat__num" data-count="12">0</span><span class="stat__label" data-i18n="stat.markets">Export markets served</span></div>

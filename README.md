@@ -1,6 +1,6 @@
 # Champasen
 
-Live demo: https://mlizk1258.github.io/Champasen/ (Vietnamese by default; add `?lang=en` for English)
+Version 1 design, update 2: simplified menu, "Our journey" timeline, no news section, simpler footer, and a Vietnamese / English switch (Vietnamese by default; add `?lang=en` for English).
 
 Marketing website for Champasen, a producer and exporter of animal feed for poultry, livestock and aquaculture.
 
