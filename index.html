@@ -1,324 +1,275 @@
-<!DOCTYPE html>
-<html lang="vi">
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="ChampaSen - Animal feed and logistics solutions in Vietnam." />
-  <title>ChampaSen | Thức ăn chăn nuôi & Hậu cần</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-  <link rel="stylesheet" href="styles.css" />
-  <script src="script.js" defer></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Champasen | Quality Animal Feed, Made to Grow</title>
+<meta name="description" content="Champasen produces and exports quality animal feed for poultry, livestock and aquaculture farms.">
+<link rel="icon" type="image/png" href="assets/logo/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
-  <a class="skip-link" href="#main-content">Chuyển đến nội dung</a>
+<a class="skip-link" href="#main">Skip to content</a>
 
-  <header class="site-header" id="siteHeader">
-    <div class="container header-bar">
-      <a href="#home" class="brand" aria-label="ChampaSen home">
-        <img src="Champasen-Logo.png" alt="ChampaSen logo" class="brand-logo" />
+<!-- ============ FIXED UI: menu tab + CTA ============ -->
+<div class="menu-tab" id="menuTab">
+  <div class="menu-tab__burst" aria-hidden="true"></div>
+  <svg class="menu-tab__bowl" viewBox="0 0 260 70" aria-hidden="true"><path d="M0 0H260C222 8 196 30 176 50C160 64 146 70 130 70C114 70 100 64 84 50C64 30 38 8 0 0Z"/></svg>
+  <button class="menu-tab__btn" id="menuBtn" aria-expanded="false" aria-controls="menuPanel">
+    <span class="menu-tab__lines" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span class="menu-tab__label menu-tab__label--open">Menu</span>
+    <span class="menu-tab__label menu-tab__label--close">Close</span>
+    <span class="sr-only">Toggle menu</span>
+  </button>
+</div>
+
+<a href="#contact" class="btn btn--gold btn--icon cta-fixed">
+  <svg class="btn__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10" /></svg>
+  <span>Get a quote</span>
+</a>
+
+<!-- ============ MENU PANEL ============ -->
+<div class="menu-panel" id="menuPanel" aria-hidden="true">
+  <div class="menu-panel__bg"></div>
+  <div class="menu-panel__inner container">
+    <a href="#" class="logo logo--light menu-panel__logo" aria-label="Champasen home">
+      <img src="assets/logo/mark-light.png" alt="" class="logo__mark"><img src="assets/logo/wordmark-light.png" alt="Champasen" class="logo__word">
+    </a>
+    <div class="menu-panel__grid">
+      <nav class="menu-panel__nav" aria-label="Main">
+        <ul class="menu-links">
+          <li><a href="#about">About us</a></li>
+          <li><a href="#what-we-do">What we do</a></li>
+          <li><a href="#what-we-do">Our products</a></li>
+          <li><a href="#about">Quality &amp; safety</a></li>
+        </ul>
+        <ul class="menu-links">
+          <li><a href="#partner">Export markets</a></li>
+          <li><a href="#news">News</a></li>
+          <li><a href="#contact">Careers</a></li>
+          <li><a href="#contact">Contact us</a></li>
+        </ul>
+        <div class="menu-panel__bottom">
+          <form class="search search--dark" role="search" onsubmit="return false">
+            <input type="search" placeholder="Search..." aria-label="Search">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="7"/><path d="M16 16l5 5"/></svg>
+          </form>
+          <div class="menu-panel__meta">
+            <div class="menu-panel__small"><a href="#">Distributors</a><a href="#">Media</a><a href="#">Jobs</a></div>
+            <div class="socials socials--light"></div>
+          </div>
+        </div>
+      </nav>
+      <aside class="menu-card">
+        <div class="menu-card__frame">
+          <div class="menu-card__burst" aria-hidden="true"></div>
+          <h3>Work with Champasen</h3>
+          <p>Talk to our team about supply, pricing and export for your market.</p>
+          <a href="#contact" class="btn btn--gold">Get a quote</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+
+<main id="main">
+
+  <!-- ============ HERO (pinned, scroll-driven) ============ -->
+  <section class="hero" id="hero">
+    <div class="hero__stage">
+      <svg class="hero__pattern" id="heroPattern" aria-hidden="true"></svg>
+
+      <a href="#" class="logo logo--light hero__logo" aria-label="Champasen home">
+        <img src="assets/logo/mark-light.png" alt="" class="logo__mark"><img src="assets/logo/wordmark-light.png" alt="Champasen" class="logo__word">
       </a>
 
-      <div class="header-actions">
-        <button class="lang-toggle" id="langToggle" type="button" aria-label="Switch language">
-          <span class="lang-current" id="langCurrent">VI</span>
-        </button>
-
-        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-expanded="false">
-          <div class="menu-icon">
-            <span></span><span></span><span></span>
-          </div>
-          <span class="menu-label" data-en="Menu" data-vi="Menu">Menu</span>
-        </button>
-      </div>
-    </div>
-
-    <div class="menu-overlay" id="menuOverlay" aria-hidden="true">
-      <div class="container menu-shell">
-        <div class="menu-top">
-          <a href="#home" class="menu-brand" aria-label="ChampaSen home">
-            <img src="Champasen-Logo.png" alt="ChampaSen logo" class="menu-brand-logo" />
-          </a>
-
-          <button class="menu-close" id="menuClose" type="button" aria-label="Close menu">
-            <span class="close-icon"><span></span><span></span></span>
-            <span class="close-label" data-en="Close" data-vi="Đóng">Đóng</span>
-          </button>
-        </div>
-
-        <div class="menu-grid">
-          <nav class="menu-left" aria-label="Main navigation">
-            <a href="#strategy" class="menu-link" data-en="Our strategy" data-vi="Chiến lược">Chiến lược</a>
-            <a href="#focus-areas" class="menu-link" data-en="Focus areas" data-vi="Lĩnh vực">Lĩnh vực</a>
-            <a href="#contact" class="menu-link" data-en="Contact" data-vi="Liên hệ">Liên hệ</a>
-          </nav>
-
-          <div class="menu-center">
-            <p class="menu-section-label" data-en="ChampaSen" data-vi="ChampaSen">ChampaSen</p>
-            <a href="#strategy" class="menu-sub-link" data-en="Our strategy" data-vi="Chiến lược">Chiến lược</a>
-            <a href="#focus-areas" class="menu-sub-link" data-en="Focus areas" data-vi="Lĩnh vực">Lĩnh vực</a>
-            <a href="#contact" class="menu-sub-link" data-en="Contact" data-vi="Liên hệ">Liên hệ</a>
-          </div>
-
-          <div class="menu-right">
-            <p class="menu-copy" data-en="Animal feed and logistics solutions for sustainable agricultural growth."
-               data-vi="Giải pháp thức ăn chăn nuôi và hậu cần cho tăng trưởng nông nghiệp bền vững.">
-              Giải pháp thức ăn chăn nuôi và hậu cần cho tăng trưởng nông nghiệp bền vững.
-            </p>
-
-            <p class="menu-contact-title" data-en="Head office" data-vi="Trụ sở chính">Trụ sở chính</p>
-            <p class="menu-contact">
-              Căn Hộ 3808, Tầng 38, Tòa Nhà Số W1, Lô Đất HH, Đường Phạm Hùng,
-              Phường Từ Liêm, Thành phố Hà Nội, Việt Nam
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <main id="main-content">
-    <section class="hero-carousel" id="home">
-      <div class="hero-stage">
-        <div class="hero-slide active" data-slide="0">
-          <img src="Hero-Image.png" alt="ChampaSen hero 1" class="hero-media" />
-          <div class="hero-copy">
-            <h1 data-en="Nutritious feed starts in the field"
-                data-vi="Dinh dưỡng bắt đầu từ đồng ruộng">
-              Dinh dưỡng bắt đầu từ đồng ruộng
-            </h1>
-            <p data-en="ChampaSen Viet Nam connects feed quality and logistics to support productive farms and reliable distribution."
-               data-vi="ChampaSen Việt Nam kết nối chất lượng thức ăn và hậu cần để hỗ trợ trang trại năng suất và phân phối ổn định.">
-              ChampaSen Việt Nam kết nối chất lượng thức ăn và hậu cần để hỗ trợ trang trại năng suất và phân phối ổn định.
-            </p>
-            <a href="#contact" class="hero-btn" data-en="Read more" data-vi="Xem thêm">Xem thêm</a>
-          </div>
-        </div>
-
-        <div class="hero-slide" data-slide="1">
-          <img src="Truck export.jpg" alt="ChampaSen hero 2" class="hero-media" />
-          <div class="hero-copy">
-            <h1 data-en="Reliable logistics for every delivery"
-                data-vi="Hậu cần đáng tin cậy cho mọi chuyến giao">
-              Hậu cần đáng tin cậy cho mọi chuyến giao
-            </h1>
-            <p data-en="From production planning to final delivery, we help farms and distributors stay on schedule."
-               data-vi="Từ lập kế hoạch sản xuất đến giao hàng cuối cùng, chúng tôi giúp trang trại và nhà phân phối đúng tiến độ.">
-              Từ lập kế hoạch sản xuất đến giao hàng cuối cùng, chúng tôi giúp trang trại và nhà phân phối đúng tiến độ.
-            </p>
-            <a href="#contact" class="hero-btn" data-en="Read more" data-vi="Xem thêm">Xem thêm</a>
-          </div>
-        </div>
-
-        <div class="hero-slide" data-slide="2">
-          <img src="Animal feed exporter.webp" alt="ChampaSen hero 3" class="hero-media" />
-          <div class="hero-copy">
-            <h1 data-en="Practical solutions for modern agriculture"
-                data-vi="Giải pháp thực tiễn cho nông nghiệp hiện đại">
-              Giải pháp thực tiễn cho nông nghiệp hiện đại
-            </h1>
-            <p data-en="Our programmes are designed to improve efficiency, animal health, and long-term performance."
-               data-vi="Chương trình của chúng tôi được thiết kế để cải thiện hiệu quả, sức khỏe vật nuôi và hiệu suất dài hạn.">
-              Chương trình của chúng tôi được thiết kế để cải thiện hiệu quả, sức khỏe vật nuôi và hiệu suất dài hạn.
-            </p>
-            <a href="#contact" class="hero-btn" data-en="Read more" data-vi="Xem thêm">Xem thêm</a>
-          </div>
-        </div>
-
-        <div class="hero-slide" data-slide="3">
-          <img src="animal-feed-manufacturers-in-vietnam-5.webp" alt="ChampaSen hero 4" class="hero-media" />
-          <div class="hero-copy">
-            <h1 data-en="ChampaSen grows with your business"
-                data-vi="ChampaSen phát triển cùng doanh nghiệp của bạn">
-              ChampaSen phát triển cùng doanh nghiệp của bạn
-            </h1>
-            <p data-en="We work closely with farms, partners, and distributors to build lasting value."
-               data-vi="Chúng tôi làm việc chặt chẽ với trang trại, đối tác và nhà phân phối để tạo giá trị bền vững.">
-              Chúng tôi làm việc chặt chẽ với trang trại, đối tác và nhà phân phối để tạo giá trị bền vững.
-            </p>
-            <a href="#contact" class="hero-btn" data-en="Read more" data-vi="Xem thêm">Xem thêm</a>
-          </div>
-        </div>
+      <div class="hero__media" id="heroMedia">
+        <img src="assets/img/hero-farmer.jpg" alt="A Champasen specialist checking free-range chickens at a feeding trough">
+        <div class="hero__shade"></div>
       </div>
 
-      <div class="hero-nav-wrap">
-        <div class="container hero-nav">
-          <button class="hero-indicator active" data-target="0" type="button">
-            <span class="indicator-text" data-en="Nutritious feed starts in the field" data-vi="Dinh dưỡng bắt đầu từ đồng ruộng">
-              Dinh dưỡng bắt đầu từ đồng ruộng
-            </span>
-            <span class="hero-progress anim"></span>
-          </button>
-          <button class="hero-indicator" data-target="1" type="button">
-            <span class="indicator-text" data-en="Reliable logistics" data-vi="Hậu cần đáng tin cậy">
-              Hậu cần đáng tin cậy
-            </span>
-            <span class="hero-progress"></span>
-          </button>
-          <button class="hero-indicator" data-target="2" type="button">
-            <span class="indicator-text" data-en="Modern agriculture solutions" data-vi="Giải pháp nông nghiệp hiện đại">
-              Giải pháp nông nghiệp hiện đại
-            </span>
-            <span class="hero-progress"></span>
-          </button>
-          <button class="hero-indicator" data-target="3" type="button">
-            <span class="indicator-text" data-en="Grow with ChampaSen" data-vi="Phát triển cùng ChampaSen">
-              Phát triển cùng ChampaSen
-            </span>
-            <span class="hero-progress"></span>
-          </button>
-        </div>
+      <div class="hero__question" id="heroQuestion">
+        <h1 class="hero__title">What if better feed could
+          <span class="accent">gr<span class="bubble" id="bubble"></span>w</span>
+          healthier animals, stronger farms and a fairer future?</h1>
       </div>
 
-      <div class="hero-bottom-band"></div>
-    </section>
-
-    <section class="strategy-section" id="strategy">
-      <div class="container strategy-inner">
-        <p class="section-label" data-en="Our strategy" data-vi="Chiến lược của chúng tôi">Chiến lược của chúng tôi</p>
-        <h2 class="strategy-title"
-            data-en="We focus on feed quality, logistics, and practical support to help agricultural businesses grow today and for seasons to come."
-            data-vi="Chúng tôi tập trung vào chất lượng thức ăn, hậu cần và hỗ trợ thực tiễn để giúp doanh nghiệp nông nghiệp phát triển hôm nay và cho các mùa vụ tiếp theo.">
-          Chúng tôi tập trung vào chất lượng thức ăn, hậu cần và hỗ trợ thực tiễn để giúp doanh nghiệp nông nghiệp phát triển hôm nay và cho các mùa vụ tiếp theo.
-        </h2>
-      </div>
-    </section>
-
-    <section class="focus-section" id="focus-areas">
-      <div class="container focus-inner">
-        <div class="focus-layout">
-          <article class="focus-feature" aria-live="polite">
-            <img id="focusImage" src="Hero-Image.png" alt="Hoạt động sản xuất thức ăn chăn nuôi ChampaSen" class="focus-image" />
-            <div class="focus-feature-content">
-              <span class="focus-feature-number" id="focusNumber">01</span>
-              <h3 id="focusTitle">Chất lượng thức ăn</h3>
-              <p id="focusDescription">
-                Chúng tôi hỗ trợ các giải pháp thức ăn phù hợp nhằm nâng cao hiệu quả vận hành và sức khỏe vật nuôi.
-              </p>
-              <a href="#contact" class="focus-read-more" data-en="Contact us" data-vi="Liên hệ với chúng tôi">
-                Liên hệ với chúng tôi
-                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-              </a>
-            </div>
-          </article>
-
-          <div class="focus-list" role="tablist" aria-label="ChampaSen focus areas">
-            <button class="focus-item active" type="button" data-focus="0" role="tab" aria-selected="true">
-              <span class="focus-item-number">01</span>
-              <span class="focus-item-title" data-en="Feed quality" data-vi="Chất lượng thức ăn">Chất lượng thức ăn</span>
-              <span class="focus-item-icon" aria-hidden="true">+</span>
-            </button>
-            <button class="focus-item" type="button" data-focus="1" role="tab" aria-selected="false">
-              <span class="focus-item-number">02</span>
-              <span class="focus-item-title" data-en="Logistics coordination" data-vi="Điều phối hậu cần">Điều phối hậu cần</span>
-              <span class="focus-item-icon" aria-hidden="true">+</span>
-            </button>
-            <button class="focus-item" type="button" data-focus="2" role="tab" aria-selected="false">
-              <span class="focus-item-number">03</span>
-              <span class="focus-item-title" data-en="Farm partnerships" data-vi="Đối tác trang trại">Đối tác trang trại</span>
-              <span class="focus-item-icon" aria-hidden="true">+</span>
-            </button>
-            <button class="focus-item" type="button" data-focus="3" role="tab" aria-selected="false">
-              <span class="focus-item-number">04</span>
-              <span class="focus-item-title" data-en="Sustainable growth" data-vi="Tăng trưởng bền vững">Tăng trưởng bền vững</span>
-              <span class="focus-item-icon" aria-hidden="true">+</span>
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="contact-panel" id="contact">
-      <div class="container contact-card">
-        <div class="contact-left">
-          <p class="eyebrow" data-en="Get in touch" data-vi="Liên hệ">Liên hệ</p>
-          <h2 data-en="Interested in working with ChampaSen?" data-vi="Bạn quan tâm đến việc hợp tác cùng ChampaSen?">
-            Bạn quan tâm đến việc hợp tác cùng ChampaSen?
-          </h2>
-          <p data-en="Contact us to learn more about our animal feed and logistics solutions."
-             data-vi="Hãy liên hệ để biết thêm về các giải pháp thức ăn chăn nuôi và hậu cần của chúng tôi.">
-            Hãy liên hệ để biết thêm về các giải pháp thức ăn chăn nuôi và hậu cần của chúng tôi.
-          </p>
-        </div>
-
-        <div class="contact-right">
-          <form class="contact-form" id="contactForm">
-            <div class="form-grid">
-              <div class="field field-full">
-                <label for="fullName" data-en="Full name" data-vi="Họ và tên">Họ và tên</label>
-                <input id="fullName" name="fullName" type="text" required placeholder="Nhập họ và tên của bạn" />
-              </div>
-              <div class="field">
-                <label for="email" data-en="Email" data-vi="Email">Email</label>
-                <input id="email" name="email" type="email" required placeholder="Nhập địa chỉ email" />
-              </div>
-              <div class="field">
-                <label for="subject" data-en="Subject" data-vi="Chủ đề">Chủ đề</label>
-                <input id="subject" name="subject" type="text" required placeholder="Nhập chủ đề" />
-              </div>
-              <div class="field field-full">
-                <label for="message" data-en="Message" data-vi="Tin nhắn">Tin nhắn</label>
-                <textarea id="message" name="message" rows="4" required placeholder="Hãy cho chúng tôi biết bạn cần hỗ trợ gì"></textarea>
-              </div>
-              <div class="field field-full checkbox-row">
-                <input id="privacy" name="privacy" type="checkbox" required />
-                <label for="privacy" data-en="I have read and agree to the Privacy Policy." data-vi="Tôi đã đọc và đồng ý với Chính sách bảo mật.">
-                  Tôi đã đọc và đồng ý với Chính sách bảo mật.
-                </label>
-              </div>
-              <div class="field field-full">
-                <button class="submit-btn" type="submit" data-en="Send message" data-vi="Gửi tin nhắn">
-                  Gửi tin nhắn
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-shell">
-      <div class="footer-brand">
-        <a href="#home" class="footer-logo-link" aria-label="ChampaSen home">
-          <img src="Champasen-Logo.png" alt="ChampaSen logo" class="footer-logo" />
-        </a>
-        <p class="footer-tagline" data-en="Animal feed and logistics solutions for sustainable agricultural growth." data-vi="Giải pháp thức ăn chăn nuôi và hậu cần cho tăng trưởng nông nghiệp bền vững.">
-          Giải pháp thức ăn chăn nuôi và hậu cần cho tăng trưởng nông nghiệp bền vững.
+      <div class="hero__statement" id="heroStatement" aria-hidden="true">
+        <p class="statement">
+          <span class="line"><span>We believe</span></span>
+          <span class="line line--accent"><span>better feed</span></span>
+          <span class="line"><span>grows stronger farms</span></span>
         </p>
       </div>
 
-      <div class="footer-info">
-        <section class="footer-column">
-          <h3 data-en="Head office" data-vi="Trụ sở chính">Trụ sở chính</h3>
-          <p class="footer-contact-line">
-            <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
-            <span>
-              Căn Hộ 3808, Tầng 38, Tòa Nhà Số W1, Lô Đất HH, Đường Phạm Hùng,
-              Phường Từ Liêm, Thành phố Hà Nội, Việt Nam
-            </span>
-          </p>
-        </section>
+      <div class="hero__cluster" id="heroCluster" aria-hidden="true"></div>
 
-        <section class="footer-column">
-          <h3 data-en="Company information" data-vi="Thông tin công ty">Thông tin công ty</h3>
-          <p class="footer-company-name"><strong>CHAMPASEN VIET NAM CORPORATION</strong></p>
-          <p class="footer-company-name"><strong>CHAMPASEN</strong></p>
-        </section>
+      <button class="scroll-cue" id="scrollCue" aria-label="Scroll down">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v13M6 12l6 6 6-6"/></svg>
+      </button>
+    </div>
+  </section>
 
-        <section class="footer-column footer-links-column">
-          <h3 data-en="Quick links" data-vi="Liên kết nhanh">Liên kết nhanh</h3>
-          <a href="#strategy">Chiến lược</a>
-          <a href="#focus-areas">Lĩnh vực hoạt động</a>
-          <a href="#contact">Liên hệ</a>
-        </section>
+  <!-- ============ ABOUT ============ -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about__intro">
+        <h2 class="h-60 reveal">Feed made with care, <em>from field to farm</em></h2>
+        <p class="t-24 reveal">Champasen produces balanced, high-quality feed for poultry, livestock and aquaculture, and delivers it to farms and distributors across the region and beyond.</p>
+        <a href="#what-we-do" class="btn btn--purple reveal">About Champasen</a>
+      </div>
+
+      <div class="feature reveal">
+        <div class="feature__text">
+          <h3 class="h-40">Quality you can trace</h3>
+          <p class="t-24r">Every batch is formulated by nutrition specialists, made from carefully selected raw materials and tested before it leaves our mill.</p>
+          <a href="#about" class="btn btn--ink">Our standards</a>
+        </div>
+        <div class="feature__img">
+          <img src="assets/img/warehouse.jpg" alt="Champasen team members checking stock in the warehouse" loading="lazy" data-parallax="8">
+        </div>
+      </div>
+
+      <div class="quote-card reveal">
+        <p class="h-40">Strong nutrition means <span class="hl">healthier herds and flocks, better yields and more reliable incomes</span> for the farmers we serve.</p>
+        <a href="#what-we-do" class="dot-link">
+          <span class="dot-link__dot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5"/></svg></span>
+          <span>Explore our products</span>
+        </a>
       </div>
     </div>
-  </footer>
+    <div class="about__petals" aria-hidden="true"></div>
+  </section>
+
+  <!-- ============ IMPACT NUMBERS ============ -->
+  <section class="impact" id="impact">
+    <img src="assets/logo/mark-small.png" alt="" class="impact__mark" aria-hidden="true">
+    <div class="container">
+      <h2 class="h-60 reveal">Growing together, <em>year after year</em></h2>
+      <div class="stats">
+        <div class="stat reveal"><span class="stat__num" data-count="25" data-suffix="+">0</span><span class="stat__label">Years of feed expertise</span></div>
+        <div class="stat reveal"><span class="stat__num" data-count="12">0</span><span class="stat__label">Export markets served</span></div>
+        <div class="stat reveal"><span class="stat__num" data-count="500" data-suffix="k">0</span><span class="stat__label">Tonnes produced every year</span></div>
+        <div class="stat reveal"><span class="stat__num" data-count="3000" data-suffix="+">0</span><span class="stat__label">Farm and distributor partners</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHAT WE DO ============ -->
+  <section class="wwd" id="what-we-do">
+    <div class="wwd__bg"><img src="assets/img/poultry-feeding.jpg" alt="" loading="lazy" data-parallax="15"></div>
+    <div class="wwd__inner">
+      <h2 class="wwd__title reveal">What we do</h2>
+      <ul class="rows">
+        <li><a href="#" class="row" style="--row:var(--gold)"><span class="row__fill"></span><span class="row__title">Poultry feed</span><span class="row__hover">Starter, grower and layer feeds for every stage</span><span class="row__arrow"><svg viewBox="0 0 24 24"><path d="M6 12h11M12 7l5 5-5 5"/></svg></span></a></li>
+        <li><a href="#" class="row" style="--row:var(--green)"><span class="row__fill"></span><span class="row__title">Cattle &amp; livestock feed</span><span class="row__hover">Balanced rations for beef, dairy and pigs</span><span class="row__arrow"><svg viewBox="0 0 24 24"><path d="M6 12h11M12 7l5 5-5 5"/></svg></span></a></li>
+        <li><a href="#" class="row" style="--row:var(--lilac)"><span class="row__fill"></span><span class="row__title">Aquaculture feed</span><span class="row__hover">Floating and sinking pellets for fish and shrimp</span><span class="row__arrow"><svg viewBox="0 0 24 24"><path d="M6 12h11M12 7l5 5-5 5"/></svg></span></a></li>
+        <li><a href="#" class="row" style="--row:var(--gold)"><span class="row__fill"></span><span class="row__title">Export &amp; logistics</span><span class="row__hover">Reliable delivery by road and sea</span><span class="row__arrow"><svg viewBox="0 0 24 24"><path d="M6 12h11M12 7l5 5-5 5"/></svg></span></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ PARTNER ============ -->
+  <section class="partner" id="partner">
+    <div class="container partner__grid">
+      <div class="partner__text">
+        <h2 class="h-60 reveal">Partner with Champasen</h2>
+        <p class="t-24r reveal">Whether you run a farm, a feed store or a distribution business, we will help you get the right feed, at the right price, on time.</p>
+        <div class="partner__btns reveal">
+          <a href="#contact" class="btn btn--green btn--block">Become a distributor</a>
+          <a href="#contact" class="btn btn--purple btn--block">Request a quote</a>
+        </div>
+      </div>
+      <div class="chart-card reveal">
+        <div class="chart-card__frame">
+          <h3 class="h-40">Where our feed goes</h3>
+          <div class="chart-card__body">
+            <svg class="donut" viewBox="0 0 120 120" id="donut" aria-label="Share of exports by market">
+              <circle class="donut__track" cx="60" cy="60" r="46"/>
+            </svg>
+            <div>
+              <p class="t-24 chart-card__lead">Share of volume by market:</p>
+              <ul class="legend" id="legend"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ NEWS ============ -->
+  <section class="news" id="news">
+    <div class="container">
+      <div class="news__head">
+        <h2 class="h-60 reveal">Latest news</h2>
+        <a href="#" class="dot-link dot-link--dark reveal"><span class="dot-link__dot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5"/></svg></span><span>View all news</span></a>
+      </div>
+      <div class="cards">
+        <a href="#" class="card reveal">
+          <div class="card__img"><img src="assets/img/truck-export.jpg" alt="A truck loaded with Champasen feed bags" loading="lazy"></div>
+          <div class="card__body"><span class="tag">Export</span><h3>New export routes bring our feed to more farms</h3><span class="card__date">September 2026</span></div>
+        </a>
+        <a href="#" class="card reveal">
+          <div class="card__img"><img src="assets/img/hero-farmer.jpg" alt="A specialist checking chickens on a farm" loading="lazy"></div>
+          <div class="card__body"><span class="tag tag--green">Farmers</span><h3>On the farm: how better nutrition lifts poultry yields</h3><span class="card__date">August 2026</span></div>
+        </a>
+        <a href="#" class="card reveal">
+          <div class="card__img"><img src="assets/img/cattle.jpg" alt="Cattle at a feedlot" loading="lazy"></div>
+          <div class="card__body"><span class="tag tag--purple">Livestock</span><h3>Five feeding tips for healthier cattle in the dry season</h3><span class="card__date">July 2026</span></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA BAND ============ -->
+  <section class="cta-band" id="contact">
+    <div class="cta-band__petals" aria-hidden="true"></div>
+    <div class="container cta-band__inner">
+      <h2 class="h-60 reveal">Ready to grow with us?</h2>
+      <p class="t-24r reveal">Tell us what you need and our team will be in touch within one working day.</p>
+      <a href="mailto:hello@champasen.com" class="btn btn--gold reveal">Contact our team</a>
+    </div>
+  </section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container footer__grid">
+    <div class="footer__brand">
+      <a href="#" class="logo footer__logo" aria-label="Champasen home">
+        <img src="assets/logo/mark-small.png" alt="" class="logo__mark"><img src="assets/logo/wordmark.png" alt="Champasen" class="logo__word">
+      </a>
+      <address>Champasen Co., Ltd.<br>Your address line here<br>hello@champasen.com</address>
+      <form class="search" role="search" onsubmit="return false">
+        <input type="search" placeholder="Search..." aria-label="Search">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="7"/><path d="M16 16l5 5"/></svg>
+      </form>
+    </div>
+    <div class="footer__links">
+      <h3>Useful links</h3>
+      <ul>
+        <li><a href="#">Products</a></li><li><a href="#">Terms &amp; conditions</a></li>
+        <li><a href="#">Quality &amp; safety</a></li><li><a href="#">FAQs</a></li>
+        <li><a href="#">Export markets</a></li><li><a href="#">Policies</a></li>
+        <li><a href="#">Careers</a></li><li><a href="#">Contact us</a></li>
+      </ul>
+    </div>
+    <div class="follow">
+      <h3>Follow us</h3>
+      <p>Follow Champasen on social media for news from our mill, our partners and the farms we serve.</p>
+      <div class="socials"></div>
+    </div>
+  </div>
+  <div class="container footer__legal">
+    <p>&copy; <span id="year">2026</span> Champasen. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>
