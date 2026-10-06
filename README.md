@@ -1,5 +1,7 @@
 # Champasen
 
+Version 1 design, update 2: simplified menu, "Our journey" timeline, no news section, simpler footer, and a Vietnamese / English switch (Vietnamese by default; add `?lang=en` for English).
+
 Marketing website for Champasen, a producer and exporter of animal feed for poultry, livestock and aquaculture.
 
 ## Run locally
@@ -17,6 +19,7 @@ Then open http://localhost:8000.
 - `index.html` — page markup
 - `css/style.css` — styles and brand tokens (purple `#482E87`, green `#13A052`, gold `#E9A631`)
 - `js/main.js` — interactions (GSAP + ScrollTrigger, loaded from cdnjs)
+- `js/i18n.js` — all site text in Vietnamese and English
 - `assets/logo/` — logo variants
 - `assets/img/` — photography
 

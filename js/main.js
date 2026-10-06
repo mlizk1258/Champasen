@@ -10,6 +10,37 @@
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const NS = 'http://www.w3.org/2000/svg';
 
+  /* ---------- language (VI / EN) ---------- */
+  const DICT = window.CHAMPASEN_I18N;
+  const LANG_KEY = 'champasen-lang';
+  function readLang() {
+    const q = new URLSearchParams(location.search).get('lang');
+    if (DICT[q]) return q;
+    try { const s = localStorage.getItem(LANG_KEY); if (DICT[s]) return s; } catch (e) { /* storage blocked */ }
+    return 'vi'; // Vietnamese is the default language
+  }
+  let lang = readLang();
+  const i18n = k => (DICT[lang][k] !== undefined ? DICT[lang][k] : DICT.vi[k]);
+  const langHooks = []; // re-render text that main.js builds itself
+  const onLang = fn => { langHooks.push(fn); fn(); };
+  function applyLang() {
+    document.documentElement.lang = lang;
+    document.title = i18n('meta.title');
+    const desc = document.querySelector('meta[name="description"]');
+    if (desc) desc.setAttribute('content', i18n('meta.desc'));
+    document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = i18n(el.dataset.i18n); });
+    document.querySelectorAll('[data-i18n-attr]').forEach(el => el.dataset.i18nAttr.split(';').forEach(pair => {
+      const [attr, key] = pair.split(':').map(s => s.trim());
+      el.setAttribute(attr, i18n(key));
+    }));
+    const sw = document.getElementById('langSwitch');
+    sw.classList.toggle('is-en', lang === 'en');
+    sw.querySelectorAll('[data-lang]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
+    langHooks.forEach(fn => fn());
+    document.documentElement.classList.remove('lang-loading');
+  }
+  applyLang();
+
   /* ---------- shape library (petal motif from the Champasen mark) ---------- */
   const SHAPES = {
     petal: 'M0-18C7-10 12-3 11 5C10 13 5 18 0 18C-5 18-10 13-11 5C-12-3-7-10 0-18Z',
@@ -88,12 +119,6 @@
     ['flower', C.gold, 62, 86, 74, -20], ['leaf', C.lilac, 50, 128, 42, 30],
     ['grain', C.goldLight, 40, 164, 8, 50], ['petal', C.greenLight, 36, 190, -8, 110]
   ]);
-  const cardBurst = makeBurst(document.querySelector('.menu-card__burst'), [
-    ['leaf', C.green, 60, -96, 34, -30], ['petal', C.lilac, 62, -56, 4, -40],
-    ['flower', C.gold, 84, -4, -14, 0], ['hook', C.purple, 64, 46, 6, 30],
-    ['leaf', C.greenLight, 52, 92, 38, 40], ['pellet', C.gold, 34, 36, 50, 15],
-    ['grain', C.green, 38, -36, 50, -15]
-  ]);
   const heroCluster = makeBurst(document.getElementById('heroCluster'), [
     ['flower', C.gold, 80, -40, -260, 10], ['leaf', C.green, 70, 10, -170, -25],
     ['petal', C.lilac, 64, -90, -120, -50], ['hook', C.goldLight, 60, 40, -80, 20],
@@ -107,7 +132,7 @@
   const btn = document.getElementById('menuBtn');
   const panel = document.getElementById('menuPanel');
   const panelBg = panel.querySelector('.menu-panel__bg');
-  const panelItems = panel.querySelectorAll('.menu-panel__logo, .menu-links li, .menu-panel__bottom, .menu-card');
+  const panelItems = panel.querySelectorAll('.menu-panel__logo, .menu-links li');
   panelItems.forEach(el => el.setAttribute('data-menu-item', ''));
   let menuOpen = false;
 
@@ -130,7 +155,6 @@
     gsap.to(tab, { y: h - 2, duration: 0.9, ease: 'power4.out', overwrite: true });
     gsap.fromTo(panelItems, { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.7, stagger: 0.04, delay: 0.25, ease: 'power3.out', overwrite: true });
     if (innerWidth >= 1024) tabBurst.show(0.2); else tabBurst.hide();
-    cardBurst.show(0.45);
   }
   function closeMenu() {
     menuOpen = false;
@@ -141,25 +165,12 @@
     gsap.to(panelItems, { opacity: 0, duration: 0.2, overwrite: true });
     gsap.to(panelBg, { yPercent: -101, duration: 0.6, ease: 'power3.inOut', overwrite: true });
     gsap.to(tab, { y: 0, duration: 0.6, ease: 'power3.inOut', overwrite: true, onComplete: () => { if (!menuOpen) panel.classList.remove('is-open'); } });
-    cardBurst.hide();
     if (!tab.matches(':hover')) tabBurst.hide();
   }
   gsap.set(panelBg, { y: 0, yPercent: -101 }); // hidden above the viewport
   btn.addEventListener('click', () => (menuOpen ? closeMenu() : openMenu()));
   addEventListener('keydown', e => { if (e.key === 'Escape' && menuOpen) { closeMenu(); btn.focus(); } });
   panel.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', () => menuOpen && closeMenu()));
-
-  /* ---------- social icons ---------- */
-  const ICONS = {
-    Facebook: '<path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.8v3h2.6V21z"/>',
-    Instagram: '<path fill-rule="evenodd" d="M7.5 3h9A4.5 4.5 0 0 1 21 7.5v9a4.5 4.5 0 0 1-4.5 4.5h-9A4.5 4.5 0 0 1 3 16.5v-9A4.5 4.5 0 0 1 7.5 3zm0 1.8a2.7 2.7 0 0 0-2.7 2.7v9a2.7 2.7 0 0 0 2.7 2.7h9a2.7 2.7 0 0 0 2.7-2.7v-9a2.7 2.7 0 0 0-2.7-2.7zM12 7.6a4.4 4.4 0 1 1 0 8.8 4.4 4.4 0 0 1 0-8.8zm0 1.8a2.6 2.6 0 1 0 0 5.2 2.6 2.6 0 0 0 0-5.2zM17 5.9a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2z"/>',
-    YouTube: '<path fill-rule="evenodd" d="M6 5.5h12A3.5 3.5 0 0 1 21.5 9v6a3.5 3.5 0 0 1-3.5 3.5H6A3.5 3.5 0 0 1 2.5 15V9A3.5 3.5 0 0 1 6 5.5zM10 9v6l5-3z"/>',
-    LinkedIn: '<path d="M4.5 9h3v10.5h-3zM6 3.8a1.8 1.8 0 1 1 0 3.6 1.8 1.8 0 0 1 0-3.6zM10 9h2.9v1.5c.5-.9 1.6-1.8 3.3-1.8 3.1 0 3.8 2 3.8 4.7v6.1h-3v-5.4c0-1.3 0-2.9-1.8-2.9s-2.1 1.4-2.1 2.8v5.5H10z"/>',
-    TikTok: '<path d="M14 3h2.9c.2 2.1 1.6 3.6 3.6 3.8v2.9c-1.4 0-2.7-.4-3.6-1.1v6.4A5.5 5.5 0 1 1 11.4 9.6v3a2.6 2.6 0 1 0 2.6 2.4z"/>'
-  };
-  document.querySelectorAll('.socials').forEach(wrap => {
-    wrap.innerHTML = Object.entries(ICONS).map(([n, d]) => `<a href="#" aria-label="${n}"><svg viewBox="0 0 24 24" aria-hidden="true">${d}</svg></a>`).join('');
-  });
 
   /* ---------- HERO: zoom into the bubble, reveal media + statement ---------- */
   const hero = document.getElementById('hero');
@@ -250,6 +261,40 @@
     cue.addEventListener('click', () => scrollTo({ top: innerHeight, behavior: 'smooth' }));
   }
 
+  /* ---------- OUR JOURNEY: pinned horizontal timeline ---------- */
+  (function journey() {
+    const section = document.getElementById('journey');
+    const track = document.getElementById('journeyTrack');
+    const fill = document.getElementById('journeyFill');
+    const line = track.querySelector('.journey__line');
+    const items = [...track.querySelectorAll('.milestone')];
+    const distance = () => Math.max(0, track.scrollWidth - track.parentElement.clientWidth);
+    // fill the line to 60% across the screen (100% by the end) and light up the dots it has passed
+    function progress(x) {
+      const t = distance() ? Math.min(1, -x / distance()) : 1;
+      const reach = -x + innerWidth * (0.6 + 0.4 * t) - line.offsetLeft;
+      gsap.set(fill, { scaleX: Math.min(1, Math.max(0, reach / line.offsetWidth)) });
+      items.forEach(m => m.classList.toggle('is-active', reach >= m.offsetLeft - line.offsetLeft));
+    }
+    if (reduceMotion) {
+      track.parentElement.style.overflowX = 'auto';
+      items.forEach(m => m.classList.add('is-active'));
+      gsap.set(fill, { scaleX: 1 });
+      return;
+    }
+    gsap.to(track, {
+      x: () => -distance(), ease: 'none',
+      // runs on every frame of the smoothed (scrubbed) motion, not just on scroll events
+      onUpdate: () => progress(gsap.getProperty(track, 'x')),
+      scrollTrigger: {
+        trigger: section, start: 'top top', end: () => '+=' + distance(),
+        pin: true, scrub: 0.6, invalidateOnRefresh: true,
+        onRefresh: () => progress(gsap.getProperty(track, 'x'))
+      }
+    });
+    progress(0);
+  })();
+
   /* ---------- reveal on scroll ---------- */
   if (!reduceMotion) {
     ScrollTrigger.batch('.reveal', {
@@ -278,9 +323,10 @@
   /* ---------- counters ---------- */
   document.querySelectorAll('[data-count]').forEach(el => {
     const end = +el.dataset.count, suffix = el.dataset.suffix || '';
-    const fmt = v => Math.round(v).toLocaleString('en-US') + suffix;
-    if (reduceMotion) { el.textContent = fmt(end); return; }
-    const o = { v: 0 };
+    const fmt = v => Math.round(v).toLocaleString(lang === 'vi' ? 'vi-VN' : 'en-US') + suffix;
+    const o = { v: reduceMotion ? end : 0 };
+    onLang(() => { el.textContent = fmt(o.v); });
+    if (reduceMotion) return;
     ScrollTrigger.create({
       trigger: el, start: 'top 85%', once: true,
       onEnter: () => gsap.to(o, { v: end, duration: 2.2, ease: 'power2.out', onUpdate: () => (el.textContent = fmt(o.v)) })
@@ -289,15 +335,12 @@
 
   /* ---------- donut chart ---------- */
   (function donut() {
-    const data = [
-      ['Vietnam', 45, C.purple], ['Laos', 25, C.green],
-      ['Cambodia', 18, C.gold], ['Other markets', 12, C.lilac]
-    ];
+    const data = [[45, C.purple], [25, C.green], [18, C.gold], [12, C.lilac]]; // share %, colour
     const svg = document.getElementById('donut');
     const legend = document.getElementById('legend');
     const r = 46, circ = 2 * Math.PI * r, gap = 1.5;
     let start = 0;
-    const segs = data.map(([label, v, col]) => {
+    const segs = data.map(([v, col]) => {
       const len = (v / 100) * circ;
       const c = document.createElementNS(NS, 'circle');
       c.setAttribute('cx', 60); c.setAttribute('cy', 60); c.setAttribute('r', r);
@@ -307,8 +350,11 @@
       c.dataset.len = Math.max(0, len - gap);
       svg.appendChild(c);
       start += len;
-      legend.insertAdjacentHTML('beforeend', `<li><i style="background:${col}"></i>${v}% ${label}</li>`);
       return c;
+    });
+    onLang(() => {
+      const names = i18n('chart.markets');
+      legend.innerHTML = data.map(([v, col], i) => `<li><i style="background:${col}"></i>${v}% ${names[i]}</li>`).join('');
     });
     const draw = () => segs.forEach((c, i) => gsap.to(c, { strokeDasharray: `${c.dataset.len} ${circ}`, duration: 1.2, delay: i * 0.15, ease: 'power3.out' }));
     if (reduceMotion) segs.forEach(c => (c.style.strokeDasharray = `${c.dataset.len} ${circ}`));
@@ -340,6 +386,15 @@
     gsap.set(el, { x, y, rotation: r, position: 'absolute' });
     if (!reduceMotion) gsap.to(el, { y: y - 120, rotation: r + 40, ease: 'none', scrollTrigger: { trigger: '.about', start: 'top bottom', end: 'bottom top', scrub: true } });
   });
+
+  /* ---------- language switch ---------- */
+  document.querySelectorAll('#langSwitch [data-lang]').forEach(b => b.addEventListener('click', () => {
+    if (b.dataset.lang === lang) return;
+    lang = b.dataset.lang;
+    try { localStorage.setItem(LANG_KEY, lang); } catch (e) { /* storage blocked */ }
+    applyLang();
+    ScrollTrigger.refresh(); // text lengths changed, so re-measure the bubble, pins and positions
+  }));
 
   /* ---------- misc ---------- */
   document.getElementById('year').textContent = new Date().getFullYear();

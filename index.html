@@ -1,77 +1,63 @@
 <!doctype html>
-<html lang="en">
+<html lang="vi">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Champasen | Quality Animal Feed, Made to Grow</title>
-<meta name="description" content="Champasen produces and exports quality animal feed for poultry, livestock and aquaculture farms.">
+<title>Champasen | Thức ăn chăn nuôi chất lượng cao</title>
+<meta name="description" content="Champasen sản xuất và xuất khẩu thức ăn chăn nuôi chất lượng cho gia cầm, gia súc và thủy sản.">
+<script>/* hide the page until the chosen language is applied (fails open after 3s) */document.documentElement.classList.add('lang-loading');setTimeout(function(){document.documentElement.classList.remove('lang-loading')},3000);</script>
 <link rel="icon" type="image/png" href="assets/logo/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,600&family=Outfit:wght@300;400;500;600&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<a class="skip-link" href="#main">Skip to content</a>
+<a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
 
-<!-- ============ FIXED UI: menu tab + CTA ============ -->
+<!-- ============ FIXED UI: menu tab, language switch + CTA ============ -->
 <div class="menu-tab" id="menuTab">
   <div class="menu-tab__burst" aria-hidden="true"></div>
   <svg class="menu-tab__bowl" viewBox="0 0 260 70" aria-hidden="true"><path d="M0 0H260C222 8 196 30 176 50C160 64 146 70 130 70C114 70 100 64 84 50C64 30 38 8 0 0Z"/></svg>
   <button class="menu-tab__btn" id="menuBtn" aria-expanded="false" aria-controls="menuPanel">
     <span class="menu-tab__lines" aria-hidden="true"><i></i><i></i><i></i></span>
-    <span class="menu-tab__label menu-tab__label--open">Menu</span>
-    <span class="menu-tab__label menu-tab__label--close">Close</span>
-    <span class="sr-only">Toggle menu</span>
+    <span class="menu-tab__label menu-tab__label--open" data-i18n="menu.open">Menu</span>
+    <span class="menu-tab__label menu-tab__label--close" data-i18n="menu.close">Close</span>
+    <span class="sr-only" data-i18n="nav.toggle">Toggle menu</span>
   </button>
 </div>
 
-<a href="#contact" class="btn btn--gold btn--icon cta-fixed">
-  <svg class="btn__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10" /></svg>
-  <span>Get a quote</span>
-</a>
+<div class="top-actions">
+  <div class="lang" id="langSwitch" role="group" aria-label="Language" data-i18n-attr="aria-label:lang.label">
+    <span class="lang__thumb" aria-hidden="true"></span>
+    <button type="button" class="lang__btn" data-lang="vi" aria-pressed="true" lang="vi">VI</button>
+    <button type="button" class="lang__btn" data-lang="en" aria-pressed="false" lang="en">EN</button>
+  </div>
+  <a href="#contact" class="btn btn--gold btn--icon cta-fixed">
+    <svg class="btn__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10" /></svg>
+    <span data-i18n="cta.quote">Get a quote</span>
+  </a>
+</div>
 
 <!-- ============ MENU PANEL ============ -->
 <div class="menu-panel" id="menuPanel" aria-hidden="true">
   <div class="menu-panel__bg"></div>
   <div class="menu-panel__inner container">
-    <a href="#" class="logo logo--light menu-panel__logo" aria-label="Champasen home">
+    <a href="#" class="logo logo--light menu-panel__logo" aria-label="Champasen home" data-i18n-attr="aria-label:logo.home">
       <img src="assets/logo/mark-light.png" alt="" class="logo__mark"><img src="assets/logo/wordmark-light.png" alt="Champasen" class="logo__word">
     </a>
-    <div class="menu-panel__grid">
-      <nav class="menu-panel__nav" aria-label="Main">
-        <ul class="menu-links">
-          <li><a href="#about">About us</a></li>
-          <li><a href="#what-we-do">What we do</a></li>
-          <li><a href="#what-we-do">Our products</a></li>
-          <li><a href="#about">Quality &amp; safety</a></li>
-        </ul>
-        <ul class="menu-links">
-          <li><a href="#partner">Export markets</a></li>
-          <li><a href="#news">News</a></li>
-          <li><a href="#contact">Careers</a></li>
-          <li><a href="#contact">Contact us</a></li>
-        </ul>
-        <div class="menu-panel__bottom">
-          <form class="search search--dark" role="search" onsubmit="return false">
-            <input type="search" placeholder="Search..." aria-label="Search">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="7"/><path d="M16 16l5 5"/></svg>
-          </form>
-          <div class="menu-panel__meta">
-            <div class="menu-panel__small"><a href="#">Distributors</a><a href="#">Media</a><a href="#">Jobs</a></div>
-            <div class="socials socials--light"></div>
-          </div>
-        </div>
-      </nav>
-      <aside class="menu-card">
-        <div class="menu-card__frame">
-          <div class="menu-card__burst" aria-hidden="true"></div>
-          <h3>Work with Champasen</h3>
-          <p>Talk to our team about supply, pricing and export for your market.</p>
-          <a href="#contact" class="btn btn--gold">Get a quote</a>
-        </div>
-      </aside>
-    </div>
+    <nav class="menu-panel__nav" aria-label="Main" data-i18n-attr="aria-label:nav.label">
+      <ul class="menu-links">
+        <li><a href="#about" data-i18n="menu.about">About us</a></li>
+        <li><a href="#what-we-do" data-i18n="menu.what">What we do</a></li>
+        <li><a href="#what-we-do" data-i18n="menu.products">Our products</a></li>
+      </ul>
+      <ul class="menu-links">
+        <li><a href="#about" data-i18n="menu.quality">Quality &amp; safety</a></li>
+        <li><a href="#partner" data-i18n="menu.export">Export markets</a></li>
+        <li><a href="#contact" data-i18n="menu.contact">Contact us</a></li>
+      </ul>
+    </nav>
   </div>
 </div>
 
@@ -82,32 +68,32 @@
     <div class="hero__stage">
       <svg class="hero__pattern" id="heroPattern" aria-hidden="true"></svg>
 
-      <a href="#" class="logo logo--light hero__logo" aria-label="Champasen home">
+      <a href="#" class="logo logo--light hero__logo" aria-label="Champasen home" data-i18n-attr="aria-label:logo.home">
         <img src="assets/logo/mark-light.png" alt="" class="logo__mark"><img src="assets/logo/wordmark-light.png" alt="Champasen" class="logo__word">
       </a>
 
       <div class="hero__media" id="heroMedia">
-        <img src="assets/img/hero-farmer.jpg" alt="A Champasen specialist checking free-range chickens at a feeding trough">
+        <img src="assets/img/hero-farmer.jpg" alt="A Champasen specialist checking free-range chickens at a feeding trough" data-i18n-attr="alt:hero.imgAlt">
         <div class="hero__shade"></div>
       </div>
 
       <div class="hero__question" id="heroQuestion">
-        <h1 class="hero__title">What if better feed could
-          <span class="accent">gr<span class="bubble" id="bubble"></span>w</span>
-          healthier animals, stronger farms and a fairer future?</h1>
+        <h1 class="hero__title"><span data-i18n="hero.q1">What if better feed could</span>
+          <span class="accent"><span data-i18n="hero.accA">gr</span><span class="bubble" id="bubble"></span><span data-i18n="hero.accB">w</span></span>
+          <span data-i18n="hero.q2">healthier animals, stronger farms and a fairer future?</span></h1>
       </div>
 
       <div class="hero__statement" id="heroStatement" aria-hidden="true">
         <p class="statement">
-          <span class="line"><span>We believe</span></span>
-          <span class="line line--accent"><span>better feed</span></span>
-          <span class="line"><span>grows stronger farms</span></span>
+          <span class="line"><span data-i18n="hero.st1">We believe</span></span>
+          <span class="line line--accent"><span data-i18n="hero.st2">better feed</span></span>
+          <span class="line"><span data-i18n="hero.st3">grows stronger farms</span></span>
         </p>
       </div>
 
       <div class="hero__cluster" id="heroCluster" aria-hidden="true"></div>
 
-      <button class="scroll-cue" id="scrollCue" aria-label="Scroll down">
+      <button class="scroll-cue" id="scrollCue" aria-label="Scroll down" data-i18n-attr="aria-label:scroll.aria">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v13M6 12l6 6 6-6"/></svg>
       </button>
     </div>
@@ -117,43 +103,86 @@
   <section class="about" id="about">
     <div class="container">
       <div class="about__intro">
-        <h2 class="h-60 reveal">Feed made with care, <em>from field to farm</em></h2>
-        <p class="t-24 reveal">Champasen produces balanced, high-quality feed for poultry, livestock and aquaculture, and delivers it to farms and distributors across the region and beyond.</p>
-        <a href="#what-we-do" class="btn btn--purple reveal">About Champasen</a>
-      </div>
-
-      <div class="feature reveal">
-        <div class="feature__text">
-          <h3 class="h-40">Quality you can trace</h3>
-          <p class="t-24r">Every batch is formulated by nutrition specialists, made from carefully selected raw materials and tested before it leaves our mill.</p>
-          <a href="#about" class="btn btn--ink">Our standards</a>
-        </div>
-        <div class="feature__img">
-          <img src="assets/img/warehouse.jpg" alt="Champasen team members checking stock in the warehouse" loading="lazy" data-parallax="8">
-        </div>
-      </div>
-
-      <div class="quote-card reveal">
-        <p class="h-40">Strong nutrition means <span class="hl">healthier herds and flocks, better yields and more reliable incomes</span> for the farmers we serve.</p>
-        <a href="#what-we-do" class="dot-link">
-          <span class="dot-link__dot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5"/></svg></span>
-          <span>Explore our products</span>
-        </a>
+        <h2 class="h-60 reveal"><span data-i18n="about.title">Feed made with care,</span> <em data-i18n="about.titleMark">from field to farm</em></h2>
+        <p class="t-24 reveal" data-i18n="about.text">Champasen produces balanced, high-quality feed for poultry, livestock and aquaculture, and delivers it to farms and distributors across the region and beyond.</p>
+        <a href="#what-we-do" class="btn btn--purple reveal" data-i18n="about.btn">About Champasen</a>
       </div>
     </div>
     <div class="about__petals" aria-hidden="true"></div>
+  </section>
+
+  <!-- ============ OUR JOURNEY (pinned horizontal timeline) ============ -->
+  <section class="journey" id="journey" aria-labelledby="journeyTitle">
+    <div class="journey__head container">
+      <p class="eyebrow" data-i18n="journey.eyebrow">Our journey</p>
+      <h2 class="h-60" id="journeyTitle"><span data-i18n="journey.title">From one mill to</span> <em data-i18n="journey.titleMark">12 export markets</em></h2>
+    </div>
+    <div class="journey__viewport">
+      <div class="journey__track" id="journeyTrack">
+        <div class="journey__line" aria-hidden="true"><span class="journey__fill" id="journeyFill"></span></div>
+        <article class="milestone">
+          <span class="milestone__year">2001</span><span class="milestone__dot" aria-hidden="true"></span>
+          <div class="milestone__card">
+            <div class="milestone__img"><img src="assets/img/warehouse.jpg" alt="Champasen team in the feed warehouse" data-i18n-attr="alt:m1.alt" loading="lazy"></div>
+            <h3 data-i18n="m1.title">Where it all began</h3>
+            <p data-i18n="m1.text">Champasen opens its first feed mill, supplying poultry farms in the local area.</p>
+          </div>
+        </article>
+        <article class="milestone">
+          <span class="milestone__year">2006</span><span class="milestone__dot" aria-hidden="true"></span>
+          <div class="milestone__card">
+            <div class="milestone__img"><img src="assets/img/truck-export.jpg" alt="A truck loaded with feed bags for export" data-i18n-attr="alt:m2.alt" loading="lazy"></div>
+            <h3 data-i18n="m2.title">First export shipment</h3>
+            <p data-i18n="m2.text">Our first trucks cross the border, starting a regional export business.</p>
+          </div>
+        </article>
+        <article class="milestone">
+          <span class="milestone__year">2012</span><span class="milestone__dot" aria-hidden="true"></span>
+          <div class="milestone__card">
+            <div class="milestone__img"><img src="assets/img/poultry-feeding.jpg" alt="Hens eating feed pellets from a trough" data-i18n-attr="alt:m3.alt" loading="lazy"></div>
+            <h3 data-i18n="m3.title">New line and quality lab</h3>
+            <p data-i18n="m3.text">A second production line doubles capacity, and every batch is now tested in-house.</p>
+          </div>
+        </article>
+        <article class="milestone">
+          <span class="milestone__year">2017</span><span class="milestone__dot" aria-hidden="true"></span>
+          <div class="milestone__card">
+            <div class="milestone__img"><img src="assets/img/cattle.jpg" alt="Cattle feeding at a feedlot" data-i18n-attr="alt:m4.alt" loading="lazy"></div>
+            <h3 data-i18n="m4.title">Livestock and aqua ranges</h3>
+            <p data-i18n="m4.text">We launch feeds for cattle, pigs, fish and shrimp alongside our poultry range.</p>
+          </div>
+        </article>
+        <article class="milestone">
+          <span class="milestone__year">2021</span><span class="milestone__dot" aria-hidden="true"></span>
+          <div class="milestone__card">
+            <div class="milestone__img"><img src="assets/img/hero-farmer.jpg" alt="A specialist checking chickens on a partner farm" data-i18n-attr="alt:m5.alt" loading="lazy"></div>
+            <h3 data-i18n="m5.title">10 export markets</h3>
+            <p data-i18n="m5.text">Our logistics network reaches ten markets by road and sea.</p>
+          </div>
+        </article>
+        <article class="milestone milestone--today">
+          <span class="milestone__year" data-i18n="journey.today">Today</span><span class="milestone__dot" aria-hidden="true"></span>
+          <div class="milestone__card">
+            <img src="assets/logo/mark-light.png" alt="" class="milestone__mark">
+            <h3 data-i18n="m6.title">Growing with 3,000+ partners</h3>
+            <p data-i18n="m6.text">500k tonnes of feed a year, delivered to 12 export markets, and still growing.</p>
+            <a href="#contact" class="btn btn--gold" data-i18n="m6.btn">Work with us</a>
+          </div>
+        </article>
+      </div>
+    </div>
   </section>
 
   <!-- ============ IMPACT NUMBERS ============ -->
   <section class="impact" id="impact">
     <img src="assets/logo/mark-small.png" alt="" class="impact__mark" aria-hidden="true">
     <div class="container">
-      <h2 class="h-60 reveal">Growing together, <em>year after year</em></h2>
+      <h2 class="h-60 reveal"><span data-i18n="impact.title">Growing together,</span> <em data-i18n="impact.titleMark">year after year</em></h2>
       <div class="stats">
-        <div class="stat reveal"><span class="stat__num" data-count="25" data-suffix="+">0</span><span class="stat__label">Years of feed expertise</span></div>
-        <div class="stat reveal"><span class="stat__num" data-count="12">0</span><span class="stat__label">Export markets served</span></div>
-        <div class="stat reveal"><span class="stat__num" data-count="500" data-suffix="k">0</span><span class="stat__label">Tonnes produced every year</span></div>
-        <div class="stat reveal"><span class="stat__num" data-count="3000" data-suffix="+">0</span><span class="stat__label">Farm and distributor partners</span></div>
+        <div class="stat reveal"><span class="stat__num" data-count="25" data-suffix="+">0</span><span class="stat__label" data-i18n="stat.years">Years of feed expertise</span></div>
+        <div class="stat reveal"><span class="stat__num" data-count="12">0</span><span class="stat__label" data-i18n="stat.markets">Export markets served</span></div>
+        <div class="stat reveal"><span class="stat__num" data-count="500" data-suffix="k">0</span><span class="stat__label" data-i18n="stat.tonnes">Tonnes produced every year</span></div>
+        <div class="stat reveal"><span class="stat__num" data-count="3000" data-suffix="+">0</span><span class="stat__label" data-i18n="stat.partners">Farm and distributor partners</span></div>
       </div>
     </div>
   </section>
@@ -162,12 +191,12 @@
   <section class="wwd" id="what-we-do">
     <div class="wwd__bg"><img src="assets/img/poultry-feeding.jpg" alt="" loading="lazy" data-parallax="15"></div>
     <div class="wwd__inner">
-      <h2 class="wwd__title reveal">What we do</h2>
+      <h2 class="wwd__title reveal" data-i18n="wwd.title">What we do</h2>
       <ul class="rows">
-        <li><a href="#" class="row" style="--row:var(--gold)"><span class="row__fill"></span><span class="row__title">Poultry feed</span><span class="row__hover">Starter, grower and layer feeds for every stage</span><span class="row__arrow"><svg viewBox="0 0 24 24"><path d="M6 12h11M12 7l5 5-5 5"/></svg></span></a></li>
-        <li><a href="#" class="row" style="--row:var(--green)"><span class="row__fill"></span><span class="row__title">Cattle &amp; livestock feed</span><span class="row__hover">Balanced rations for beef, dairy and pigs</span><span class="row__arrow"><svg viewBox="0 0 24 24"><path d="M6 12h11M12 7l5 5-5 5"/></svg></span></a></li>
-        <li><a href="#" class="row" style="--row:var(--lilac)"><span class="row__fill"></span><span class="row__title">Aquaculture feed</span><span class="row__hover">Floating and sinking pellets for fish and shrimp</span><span class="row__arrow"><svg viewBox="0 0 24 24"><path d="M6 12h11M12 7l5 5-5 5"/></svg></span></a></li>
-        <li><a href="#" class="row" style="--row:var(--gold)"><span class="row__fill"></span><span class="row__title">Export &amp; logistics</span><span class="row__hover">Reliable delivery by road and sea</span><span class="row__arrow"><svg viewBox="0 0 24 24"><path d="M6 12h11M12 7l5 5-5 5"/></svg></span></a></li>
+        <li><a href="#" class="row" style="--row:var(--gold)"><span class="row__fill"></span><span class="row__title" data-i18n="row1.title">Poultry feed</span><span class="row__hover" data-i18n="row1.hover">Starter, grower and layer feeds for every stage</span><span class="row__arrow"><svg viewBox="0 0 24 24"><path d="M6 12h11M12 7l5 5-5 5"/></svg></span></a></li>
+        <li><a href="#" class="row" style="--row:var(--green)"><span class="row__fill"></span><span class="row__title" data-i18n="row2.title">Cattle &amp; livestock feed</span><span class="row__hover" data-i18n="row2.hover">Balanced rations for beef, dairy and pigs</span><span class="row__arrow"><svg viewBox="0 0 24 24"><path d="M6 12h11M12 7l5 5-5 5"/></svg></span></a></li>
+        <li><a href="#" class="row" style="--row:var(--lilac)"><span class="row__fill"></span><span class="row__title" data-i18n="row3.title">Aquaculture feed</span><span class="row__hover" data-i18n="row3.hover">Floating and sinking pellets for fish and shrimp</span><span class="row__arrow"><svg viewBox="0 0 24 24"><path d="M6 12h11M12 7l5 5-5 5"/></svg></span></a></li>
+        <li><a href="#" class="row" style="--row:var(--gold)"><span class="row__fill"></span><span class="row__title" data-i18n="row4.title">Export &amp; logistics</span><span class="row__hover" data-i18n="row4.hover">Reliable delivery by road and sea</span><span class="row__arrow"><svg viewBox="0 0 24 24"><path d="M6 12h11M12 7l5 5-5 5"/></svg></span></a></li>
       </ul>
     </div>
   </section>
@@ -176,22 +205,22 @@
   <section class="partner" id="partner">
     <div class="container partner__grid">
       <div class="partner__text">
-        <h2 class="h-60 reveal">Partner with Champasen</h2>
-        <p class="t-24r reveal">Whether you run a farm, a feed store or a distribution business, we will help you get the right feed, at the right price, on time.</p>
+        <h2 class="h-60 reveal" data-i18n="partner.title">Partner with Champasen</h2>
+        <p class="t-24r reveal" data-i18n="partner.text">Whether you run a farm, a feed store or a distribution business, we will help you get the right feed, at the right price, on time.</p>
         <div class="partner__btns reveal">
-          <a href="#contact" class="btn btn--green btn--block">Become a distributor</a>
-          <a href="#contact" class="btn btn--purple btn--block">Request a quote</a>
+          <a href="#contact" class="btn btn--green btn--block" data-i18n="partner.distributor">Become a distributor</a>
+          <a href="#contact" class="btn btn--purple btn--block" data-i18n="partner.quote">Request a quote</a>
         </div>
       </div>
       <div class="chart-card reveal">
         <div class="chart-card__frame">
-          <h3 class="h-40">Where our feed goes</h3>
+          <h3 class="h-40" data-i18n="chart.title">Where our feed goes</h3>
           <div class="chart-card__body">
-            <svg class="donut" viewBox="0 0 120 120" id="donut" aria-label="Share of exports by market">
+            <svg class="donut" viewBox="0 0 120 120" id="donut" aria-label="Share of exports by market" data-i18n-attr="aria-label:chart.aria">
               <circle class="donut__track" cx="60" cy="60" r="46"/>
             </svg>
             <div>
-              <p class="t-24 chart-card__lead">Share of volume by market:</p>
+              <p class="t-24 chart-card__lead" data-i18n="chart.lead">Share of volume by market:</p>
               <ul class="legend" id="legend"></ul>
             </div>
           </div>
@@ -200,37 +229,13 @@
     </div>
   </section>
 
-  <!-- ============ NEWS ============ -->
-  <section class="news" id="news">
-    <div class="container">
-      <div class="news__head">
-        <h2 class="h-60 reveal">Latest news</h2>
-        <a href="#" class="dot-link dot-link--dark reveal"><span class="dot-link__dot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5"/></svg></span><span>View all news</span></a>
-      </div>
-      <div class="cards">
-        <a href="#" class="card reveal">
-          <div class="card__img"><img src="assets/img/truck-export.jpg" alt="A truck loaded with Champasen feed bags" loading="lazy"></div>
-          <div class="card__body"><span class="tag">Export</span><h3>New export routes bring our feed to more farms</h3><span class="card__date">September 2026</span></div>
-        </a>
-        <a href="#" class="card reveal">
-          <div class="card__img"><img src="assets/img/hero-farmer.jpg" alt="A specialist checking chickens on a farm" loading="lazy"></div>
-          <div class="card__body"><span class="tag tag--green">Farmers</span><h3>On the farm: how better nutrition lifts poultry yields</h3><span class="card__date">August 2026</span></div>
-        </a>
-        <a href="#" class="card reveal">
-          <div class="card__img"><img src="assets/img/cattle.jpg" alt="Cattle at a feedlot" loading="lazy"></div>
-          <div class="card__body"><span class="tag tag--purple">Livestock</span><h3>Five feeding tips for healthier cattle in the dry season</h3><span class="card__date">July 2026</span></div>
-        </a>
-      </div>
-    </div>
-  </section>
-
   <!-- ============ CTA BAND ============ -->
   <section class="cta-band" id="contact">
     <div class="cta-band__petals" aria-hidden="true"></div>
     <div class="container cta-band__inner">
-      <h2 class="h-60 reveal">Ready to grow with us?</h2>
-      <p class="t-24r reveal">Tell us what you need and our team will be in touch within one working day.</p>
-      <a href="mailto:hello@champasen.com" class="btn btn--gold reveal">Contact our team</a>
+      <h2 class="h-60 reveal" data-i18n="contact.title">Ready to grow with us?</h2>
+      <p class="t-24r reveal" data-i18n="contact.text">Tell us what you need and our team will be in touch within one working day.</p>
+      <a href="mailto:hello@champasen.com" class="btn btn--gold reveal" data-i18n="contact.btn">Contact our team</a>
     </div>
   </section>
 </main>
@@ -239,37 +244,29 @@
 <footer class="footer">
   <div class="container footer__grid">
     <div class="footer__brand">
-      <a href="#" class="logo footer__logo" aria-label="Champasen home">
+      <a href="#" class="logo footer__logo" aria-label="Champasen home" data-i18n-attr="aria-label:logo.home">
         <img src="assets/logo/mark-small.png" alt="" class="logo__mark"><img src="assets/logo/wordmark.png" alt="Champasen" class="logo__word">
       </a>
-      <address>Champasen Co., Ltd.<br>Your address line here<br>hello@champasen.com</address>
-      <form class="search" role="search" onsubmit="return false">
-        <input type="search" placeholder="Search..." aria-label="Search">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="7"/><path d="M16 16l5 5"/></svg>
-      </form>
+      <address><span data-i18n="footer.company">Champasen Co., Ltd.</span><br><span data-i18n="footer.address">Your address line here</span><br>hello@champasen.com</address>
     </div>
     <div class="footer__links">
-      <h3>Useful links</h3>
+      <h3 data-i18n="footer.links">Useful links</h3>
       <ul>
-        <li><a href="#">Products</a></li><li><a href="#">Terms &amp; conditions</a></li>
-        <li><a href="#">Quality &amp; safety</a></li><li><a href="#">FAQs</a></li>
-        <li><a href="#">Export markets</a></li><li><a href="#">Policies</a></li>
-        <li><a href="#">Careers</a></li><li><a href="#">Contact us</a></li>
+        <li><a href="#" data-i18n="footer.products">Products</a></li><li><a href="#" data-i18n="footer.terms">Terms &amp; conditions</a></li>
+        <li><a href="#" data-i18n="footer.quality">Quality &amp; safety</a></li><li><a href="#" data-i18n="footer.faqs">FAQs</a></li>
+        <li><a href="#" data-i18n="footer.export">Export markets</a></li><li><a href="#" data-i18n="footer.policies">Policies</a></li>
+        <li><a href="#" data-i18n="footer.contact">Contact us</a></li>
       </ul>
-    </div>
-    <div class="follow">
-      <h3>Follow us</h3>
-      <p>Follow Champasen on social media for news from our mill, our partners and the farms we serve.</p>
-      <div class="socials"></div>
     </div>
   </div>
   <div class="container footer__legal">
-    <p>&copy; <span id="year">2026</span> Champasen. All rights reserved.</p>
+    <p>&copy; <span id="year">2026</span> Champasen. <span data-i18n="footer.rights">All rights reserved.</span></p>
   </div>
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="js/i18n.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>
