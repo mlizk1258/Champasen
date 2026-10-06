@@ -44,7 +44,7 @@
     const W = 1600, H = 1000;
     svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
     svg.setAttribute('preserveAspectRatio', 'xMidYMid slice');
-    const tones = ['#2a1d4c', '#251942', '#30225a'];
+    const tones = ['#efe7d6', '#ebe4f7', '#e2f1e7'];
     const names = ['petal', 'leaf', 'hook', 'flower', 'petal', 'leaf'];
     const placed = [];
     let tries = 0;
@@ -88,12 +88,6 @@
     ['flower', C.gold, 62, 86, 74, -20], ['leaf', C.lilac, 50, 128, 42, 30],
     ['grain', C.goldLight, 40, 164, 8, 50], ['petal', C.greenLight, 36, 190, -8, 110]
   ]);
-  const cardBurst = makeBurst(document.querySelector('.menu-card__burst'), [
-    ['leaf', C.green, 60, -96, 34, -30], ['petal', C.lilac, 62, -56, 4, -40],
-    ['flower', C.gold, 84, -4, -14, 0], ['hook', C.purple, 64, 46, 6, 30],
-    ['leaf', C.greenLight, 52, 92, 38, 40], ['pellet', C.gold, 34, 36, 50, 15],
-    ['grain', C.green, 38, -36, 50, -15]
-  ]);
   const heroCluster = makeBurst(document.getElementById('heroCluster'), [
     ['flower', C.gold, 80, -40, -260, 10], ['leaf', C.green, 70, 10, -170, -25],
     ['petal', C.lilac, 64, -90, -120, -50], ['hook', C.goldLight, 60, 40, -80, 20],
@@ -107,7 +101,7 @@
   const btn = document.getElementById('menuBtn');
   const panel = document.getElementById('menuPanel');
   const panelBg = panel.querySelector('.menu-panel__bg');
-  const panelItems = panel.querySelectorAll('.menu-panel__logo, .menu-links li, .menu-panel__bottom, .menu-card');
+  const panelItems = panel.querySelectorAll('.menu-panel__logo, .menu-links li');
   panelItems.forEach(el => el.setAttribute('data-menu-item', ''));
   let menuOpen = false;
 
@@ -130,7 +124,6 @@
     gsap.to(tab, { y: h - 2, duration: 0.9, ease: 'power4.out', overwrite: true });
     gsap.fromTo(panelItems, { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.7, stagger: 0.04, delay: 0.25, ease: 'power3.out', overwrite: true });
     if (innerWidth >= 1024) tabBurst.show(0.2); else tabBurst.hide();
-    cardBurst.show(0.45);
   }
   function closeMenu() {
     menuOpen = false;
@@ -141,7 +134,6 @@
     gsap.to(panelItems, { opacity: 0, duration: 0.2, overwrite: true });
     gsap.to(panelBg, { yPercent: -101, duration: 0.6, ease: 'power3.inOut', overwrite: true });
     gsap.to(tab, { y: 0, duration: 0.6, ease: 'power3.inOut', overwrite: true, onComplete: () => { if (!menuOpen) panel.classList.remove('is-open'); } });
-    cardBurst.hide();
     if (!tab.matches(':hover')) tabBurst.hide();
   }
   gsap.set(panelBg, { y: 0, yPercent: -101 }); // hidden above the viewport
@@ -161,82 +153,120 @@
     wrap.innerHTML = Object.entries(ICONS).map(([n, d]) => `<a href="#" aria-label="${n}"><svg viewBox="0 0 24 24" aria-hidden="true">${d}</svg></a>`).join('');
   });
 
-  /* ---------- HERO: zoom into the bubble, reveal media + statement ---------- */
+  /* ---------- hand-drawn underline on highlighted words ---------- */
+  const MARK_D = 'M2 13C28 7 62 5 100 7.5C138 10 170 9 198 5';
+  document.querySelectorAll('.mark').forEach(m => {
+    m.insertAdjacentHTML('beforeend', `<svg class="mark__line" viewBox="0 0 200 18" preserveAspectRatio="none" aria-hidden="true"><path d="${MARK_D}" pathLength="1"/></svg>`);
+  });
+  const markPath = m => m.querySelector('.mark__line path');
+  if (reduceMotion) {
+    gsap.set('.mark__line path', { strokeDashoffset: 0 });
+  } else {
+    document.querySelectorAll('.mark:not(.mark--hero)').forEach(m => {
+      const inHero = m.closest('.hero');
+      if (inHero) { gsap.to(markPath(m), { strokeDashoffset: 0, duration: 1.1, delay: 0.7, ease: 'power2.inOut' }); return; }
+      ScrollTrigger.create({
+        trigger: m, start: 'top 82%', once: true,
+        onEnter: () => gsap.to(markPath(m), { strokeDashoffset: 0, duration: 1.1, delay: 0.3, ease: 'power2.inOut' })
+      });
+    });
+  }
+
+  /* ---------- product strip (marquee) ---------- */
+  (function marquee() {
+    const track = document.querySelector('.marquee__track');
+    const items = ['Poultry feed', 'Cattle & livestock feed', 'Aquaculture feed', 'Export & logistics', 'Tested in every batch', 'Made to grow'];
+    const sep = `<svg viewBox="-20 -20 40 40"><path d="${SHAPES.petal}" fill="${C.purple}"/></svg>`;
+    const set = items.map(t => `<span class="marquee__item">${t}${sep}</span>`).join('');
+    track.innerHTML = set + set; // two copies so the loop is seamless
+  })();
+
+  /* ---------- HERO: photo in a petal that opens to full screen ---------- */
   const hero = document.getElementById('hero');
   const stage = hero.querySelector('.hero__stage');
-  const question = document.getElementById('heroQuestion');
-  const bubble = document.getElementById('bubble');
+  const copyParts = document.getElementById('heroCopy').children;
+  const slot = document.getElementById('heroSlot');
+  const petal = document.getElementById('heroPetalPath');
   const media = document.getElementById('heroMedia');
   const mediaImg = media.querySelector('img');
   const shade = media.querySelector('.hero__shade');
   const pattern = document.getElementById('heroPattern');
   const lines = hero.querySelectorAll('.statement .line > span');
   const cue = document.getElementById('scrollCue');
-  const geo = { cx: 0, cy: 0, r: 0, max: 1 };
+  const logoDark = hero.querySelector('.hero__logo-set--dark');
+  const logoLight = document.getElementById('heroLogoLight');
+  const marqueeBand = document.getElementById('heroMarquee');
+  const statementMark = markPath(document.getElementById('statementMark'));
+  // the petal path lives in a 100x100 box; this circle always fits inside it
+  const PETAL = { cx: 50, cy: 62, r: 34 };
+  const geo = { x0: 0, y0: 0, sx0: 1, sy0: 1, W: 0, H: 0, k1: 1, fx: 0, fy: 0, tx: 0, ty: 0, s0: 1.12 };
+  const FACE = { x: 0.715, y: 0.24, w: 1440, h: 829 }; // focal point in hero-farmer.jpg
 
   function measure() {
-    const prev = question.style.transform;
-    question.style.transform = 'none';
     const s = stage.getBoundingClientRect();
-    const b = bubble.getBoundingClientRect();
-    const ring = parseFloat(getComputedStyle(bubble).borderTopWidth) || 0;
-    geo.cx = b.left - s.left + b.width / 2;
-    geo.cy = b.top - s.top + b.height / 2;
-    geo.r = Math.max(2, b.width / 2 - ring * 0.6);
-    // scale needed for the ring to clear the furthest corner of the viewport
-    const far = Math.max(
-      Math.hypot(geo.cx, geo.cy), Math.hypot(s.width - geo.cx, geo.cy),
-      Math.hypot(geo.cx, s.height - geo.cy), Math.hypot(s.width - geo.cx, s.height - geo.cy)
-    );
-    geo.max = (far / geo.r) * 1.08;
-    question.style.transform = prev;
-    question.style.transformOrigin = `${geo.cx}px ${geo.cy}px`;
+    const b = slot.getBoundingClientRect();
+    geo.W = s.width; geo.H = s.height;
+    geo.x0 = b.left - s.left + b.width * PETAL.cx / 100;
+    geo.y0 = b.top - s.top + b.height * PETAL.cy / 100;
+    geo.sx0 = b.width / 100; geo.sy0 = b.height / 100;
+    // uniform scale at which the petal's inner circle covers the whole viewport
+    geo.k1 = (Math.hypot(s.width, s.height) / 2 / PETAL.r) * 1.06;
+    // where the face lands with object-fit: cover + the CSS object-position
+    const k = Math.max(s.width / FACE.w, s.height / FACE.h);
+    const dw = FACE.w * k, dh = FACE.h * k;
+    const [px, py] = getComputedStyle(mediaImg).objectPosition.split(' ').map(v => parseFloat(v) / 100);
+    geo.fx = (s.width - dw) * px + FACE.x * dw;
+    geo.fy = (s.height - dh) * py + FACE.y * dh;
+    // at rest, pull the face into the wide part of the petal
+    geo.tx = (b.left - s.left + b.width / 2) - geo.fx;
+    geo.ty = (b.top - s.top + b.height * 0.45) - geo.fy;
+    // smallest zoom that keeps the shifted photo covering the whole petal slot
+    const L = b.left - s.left, T = b.top - s.top, R = L + b.width, B = T + b.height;
+    geo.s0 = Math.max(1.12,
+      (geo.fy + geo.ty - T) / geo.fy,
+      (B - geo.fy - geo.ty) / (s.height - geo.fy),
+      (geo.fx + geo.tx - L) / geo.fx,
+      (R - geo.fx - geo.tx) / (s.width - geo.fx)) * 1.03;
+    mediaImg.style.transformOrigin = `${geo.fx}px ${geo.fy}px`;
   }
-  const zoom = { p: 0 };
-  const TEXT_CAP = 14; // max headline scale before it fades out
-  const FACE = { x: 0.715, y: 0.24, w: 1440, h: 829 }; // focal point in hero-farmer.jpg
-  function renderZoom() {
-    const scale = Math.pow(geo.max, zoom.p); // exponential = even-feeling zoom
-    // Cap the headline's scale: scaling text ~90x makes Chrome rasterise a gigantic
-    // layer, which exhausts GPU tile memory and leaves the hero and the fixed menu tab
-    // half-painted when scrolling back up. Past the cap the text fades out and only the
-    // (cheap) clip-path circle keeps growing.
-    const capP = Math.log(TEXT_CAP) / Math.log(geo.max);
-    const fadeT = Math.min(1, Math.max(0, (zoom.p - capP * 0.7) / (capP * 0.3)));
-    const textHidden = zoom.p >= capP;
-    question.style.transform = `scale(${Math.min(scale, TEXT_CAP).toFixed(4)})`;
-    question.style.opacity = (1 - fadeT * fadeT * (3 - 2 * fadeT)).toFixed(3);
-    question.style.visibility = textHidden ? 'hidden' : 'visible';
-    // where the face lands with object-fit: cover, then pull it under the bubble
-    const sw = stage.clientWidth, sh = stage.clientHeight;
-    const k = Math.max(sw / FACE.w, sh / FACE.h);
-    const fx = (sw - FACE.w * k) / 2 + FACE.x * FACE.w * k;
-    const fy = (sh - FACE.h * k) / 2 + FACE.y * FACE.h * k;
-    const q = 1 - Math.min(1, zoom.p / 0.85);
-    const ease = q * q * (3 - 2 * q);
-    mediaImg.style.transformOrigin = `${fx}px ${fy}px`;
-    mediaImg.style.transform = `translate(${((geo.cx - fx) * ease).toFixed(1)}px, ${((geo.cy - fy) * ease).toFixed(1)}px) scale(${(1 + 0.5 * ease).toFixed(3)})`;
-    media.style.clipPath = `circle(${(geo.r * scale).toFixed(1)}px at ${geo.cx}px ${geo.cy}px)`;
+  const open = { p: 0 };
+  function renderOpen() {
+    const e = open.p;
+    const x = geo.x0 + (geo.W / 2 - geo.x0) * e;
+    const y = geo.y0 + (geo.H / 2 - geo.y0) * e;
+    // geometric interpolation keeps the growth feeling even
+    const sx = geo.sx0 * Math.pow(geo.k1 / geo.sx0, e);
+    const sy = geo.sy0 * Math.pow(geo.k1 / geo.sy0, e);
+    const rot = -10 * (1 - e);
+    petal.setAttribute('transform', `translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${rot.toFixed(2)}) scale(${sx.toFixed(4)} ${sy.toFixed(4)}) translate(${-PETAL.cx} ${-PETAL.cy})`);
+    const rest = 1 - Math.min(1, e / 0.85);
+    const q = rest * rest * (3 - 2 * rest);
+    mediaImg.style.transform = `translate(${(geo.tx * q).toFixed(1)}px, ${(geo.ty * q).toFixed(1)}px) scale(${(1 + (geo.s0 - 1) * q).toFixed(4)})`;
   }
-  measure(); renderZoom();
-  addEventListener('load', () => { measure(); renderZoom(); });
-  document.fonts && document.fonts.ready.then(() => { measure(); renderZoom(); ScrollTrigger.refresh(); });
+  measure(); renderOpen();
+  addEventListener('load', () => { measure(); renderOpen(); });
+  document.fonts && document.fonts.ready.then(() => { measure(); renderOpen(); ScrollTrigger.refresh(); });
 
   if (!reduceMotion) {
+    gsap.set(lines, { y: 0, yPercent: 110 });
+    gsap.set(marqueeBand, { y: 0, yPercent: 101 });
     const tl = gsap.timeline({ defaults: { ease: 'none' } });
     tl.to(cue, { opacity: 0, y: 20, duration: 0.08 }, 0)
-      .to(zoom, { p: 1, duration: 0.5, ease: 'power2.in', onUpdate: renderZoom }, 0)
-      .to(pattern, { scale: 1.4, rotation: 8, duration: 0.5, transformOrigin: '50% 50%' }, 0)
-      .to(shade, { opacity: 1, duration: 0.12 }, 0.5)
-      .to(lines, { yPercent: 0, duration: 0.14, stagger: 0.07, ease: 'power3.out' }, 0.55)
-      .to({}, { duration: 0.18 }); // hold on the statement before release
-    gsap.set(lines, { y: 0, yPercent: 110 });
+      .to(copyParts, { opacity: 0, x: -80, duration: 0.2, stagger: 0.015, ease: 'power1.in' }, 0)
+      .to(open, { p: 1, duration: 0.5, ease: 'power2.inOut', onUpdate: renderOpen }, 0)
+      .to(pattern, { scale: 1.25, rotation: 6, duration: 0.5, transformOrigin: '50% 50%' }, 0)
+      .to(shade, { opacity: 1, duration: 0.12 }, 0.42)
+      .to(logoDark, { opacity: 0, duration: 0.1 }, 0.42)
+      .to(logoLight, { opacity: 1, duration: 0.1 }, 0.42)
+      .to(lines, { yPercent: 0, duration: 0.14, stagger: 0.07, ease: 'power3.out' }, 0.52)
+      .to(statementMark, { strokeDashoffset: 0, duration: 0.12, ease: 'power2.inOut' }, 0.68)
+      .to(marqueeBand, { yPercent: 0, duration: 0.1, ease: 'power2.out' }, 0.74)
+      .to({}, { duration: 0.16 }); // hold on the statement before release
     let clusterShown = false;
     ScrollTrigger.create({
       trigger: hero, start: 'top top', end: '+=300%', pin: true, scrub: 0.8, animation: tl,
       invalidateOnRefresh: true,
-      onRefreshInit: () => { zoom.p = 0; renderZoom(); },
-      onRefresh: () => { measure(); renderZoom(); },
+      onRefresh: () => { measure(); renderOpen(); },
       onUpdate: self => {
         const want = self.progress > 0.62;
         if (want !== clusterShown) { clusterShown = want; want ? heroCluster.show() : heroCluster.hide(); }
@@ -249,6 +279,40 @@
   } else {
     cue.addEventListener('click', () => scrollTo({ top: innerHeight, behavior: 'smooth' }));
   }
+
+  /* ---------- OUR JOURNEY: pinned horizontal timeline ---------- */
+  (function journey() {
+    const section = document.getElementById('journey');
+    const track = document.getElementById('journeyTrack');
+    const fill = document.getElementById('journeyFill');
+    const line = track.querySelector('.journey__line');
+    const items = [...track.querySelectorAll('.milestone')];
+    const distance = () => Math.max(0, track.scrollWidth - track.parentElement.clientWidth);
+    // fill the line to 60% across the screen (100% by the end) and light up the dots it has passed
+    function progress(x) {
+      const t = distance() ? Math.min(1, -x / distance()) : 1;
+      const reach = -x + innerWidth * (0.6 + 0.4 * t) - line.offsetLeft;
+      gsap.set(fill, { scaleX: Math.min(1, Math.max(0, reach / line.offsetWidth)) });
+      items.forEach(m => m.classList.toggle('is-active', reach >= m.offsetLeft - line.offsetLeft));
+    }
+    if (reduceMotion) {
+      track.parentElement.style.overflowX = 'auto';
+      items.forEach(m => m.classList.add('is-active'));
+      gsap.set(fill, { scaleX: 1 });
+      return;
+    }
+    gsap.to(track, {
+      x: () => -distance(), ease: 'none',
+      // runs on every frame of the smoothed (scrubbed) motion, not just on scroll events
+      onUpdate: () => progress(gsap.getProperty(track, 'x')),
+      scrollTrigger: {
+        trigger: section, start: 'top top', end: () => '+=' + distance(),
+        pin: true, scrub: 0.6, invalidateOnRefresh: true,
+        onRefresh: () => progress(gsap.getProperty(track, 'x'))
+      }
+    });
+    progress(0);
+  })();
 
   /* ---------- reveal on scroll ---------- */
   if (!reduceMotion) {

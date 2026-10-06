@@ -8,7 +8,7 @@
 <link rel="icon" type="image/png" href="assets/logo/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -38,40 +38,20 @@
     <a href="#" class="logo logo--light menu-panel__logo" aria-label="Champasen home">
       <img src="assets/logo/mark-light.png" alt="" class="logo__mark"><img src="assets/logo/wordmark-light.png" alt="Champasen" class="logo__word">
     </a>
-    <div class="menu-panel__grid">
-      <nav class="menu-panel__nav" aria-label="Main">
-        <ul class="menu-links">
-          <li><a href="#about">About us</a></li>
-          <li><a href="#what-we-do">What we do</a></li>
-          <li><a href="#what-we-do">Our products</a></li>
-          <li><a href="#about">Quality &amp; safety</a></li>
-        </ul>
-        <ul class="menu-links">
-          <li><a href="#partner">Export markets</a></li>
-          <li><a href="#news">News</a></li>
-          <li><a href="#contact">Careers</a></li>
-          <li><a href="#contact">Contact us</a></li>
-        </ul>
-        <div class="menu-panel__bottom">
-          <form class="search search--dark" role="search" onsubmit="return false">
-            <input type="search" placeholder="Search..." aria-label="Search">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="7"/><path d="M16 16l5 5"/></svg>
-          </form>
-          <div class="menu-panel__meta">
-            <div class="menu-panel__small"><a href="#">Distributors</a><a href="#">Media</a><a href="#">Jobs</a></div>
-            <div class="socials socials--light"></div>
-          </div>
-        </div>
-      </nav>
-      <aside class="menu-card">
-        <div class="menu-card__frame">
-          <div class="menu-card__burst" aria-hidden="true"></div>
-          <h3>Work with Champasen</h3>
-          <p>Talk to our team about supply, pricing and export for your market.</p>
-          <a href="#contact" class="btn btn--gold">Get a quote</a>
-        </div>
-      </aside>
-    </div>
+    <nav class="menu-panel__nav" aria-label="Main">
+      <ul class="menu-links">
+        <li><a href="#about">About us</a></li>
+        <li><a href="#what-we-do">What we do</a></li>
+        <li><a href="#what-we-do">Our products</a></li>
+        <li><a href="#about">Quality &amp; safety</a></li>
+      </ul>
+      <ul class="menu-links">
+        <li><a href="#partner">Export markets</a></li>
+        <li><a href="#news">News</a></li>
+        <li><a href="#news">Media</a></li>
+        <li><a href="#contact">Contact us</a></li>
+      </ul>
+    </nav>
   </div>
 </div>
 
@@ -82,33 +62,47 @@
     <div class="hero__stage">
       <svg class="hero__pattern" id="heroPattern" aria-hidden="true"></svg>
 
-      <a href="#" class="logo logo--light hero__logo" aria-label="Champasen home">
-        <img src="assets/logo/mark-light.png" alt="" class="logo__mark"><img src="assets/logo/wordmark-light.png" alt="Champasen" class="logo__word">
+      <a href="#" class="logo hero__logo" aria-label="Champasen home">
+        <span class="hero__logo-set hero__logo-set--dark"><img src="assets/logo/mark-small.png" alt="" class="logo__mark"><img src="assets/logo/wordmark.png" alt="Champasen" class="logo__word"></span>
+        <span class="hero__logo-set hero__logo-set--light" id="heroLogoLight" aria-hidden="true"><img src="assets/logo/mark-light.png" alt="" class="logo__mark"><img src="assets/logo/wordmark-light.png" alt="" class="logo__word"></span>
       </a>
 
+      <div class="hero__copy" id="heroCopy">
+        <p class="eyebrow">Quality animal feed</p>
+        <h1 class="hero__title">Feed that helps every farm <span class="mark">grow</span></h1>
+        <p class="hero__lead">Balanced, high-quality feed for poultry, livestock and aquaculture, made with care and delivered across the region.</p>
+        <div class="hero__actions">
+          <a href="#what-we-do" class="btn btn--purple">Explore our products</a>
+          <a href="#contact" class="text-link">Talk to our team <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5"/></svg></a>
+        </div>
+      </div>
+
+      <div class="hero__slot" id="heroSlot" aria-hidden="true"></div>
+      <svg class="clip-defs" width="0" height="0" aria-hidden="true" focusable="false">
+        <defs><clipPath id="heroPetalClip" clipPathUnits="userSpaceOnUse"><path id="heroPetalPath" d="M50 0C63 16 90 30 95 58C100 86 78 100 50 100C22 100 0 86 5 58C10 30 37 16 50 0Z"/></clipPath></defs>
+      </svg>
       <div class="hero__media" id="heroMedia">
         <img src="assets/img/hero-farmer.jpg" alt="A Champasen specialist checking free-range chickens at a feeding trough">
         <div class="hero__shade"></div>
       </div>
 
-      <div class="hero__question" id="heroQuestion">
-        <h1 class="hero__title">What if better feed could
-          <span class="accent">gr<span class="bubble" id="bubble"></span>w</span>
-          healthier animals, stronger farms and a fairer future?</h1>
-      </div>
-
       <div class="hero__statement" id="heroStatement" aria-hidden="true">
         <p class="statement">
           <span class="line"><span>We believe</span></span>
-          <span class="line line--accent"><span>better feed</span></span>
+          <span class="line"><span><span class="mark mark--hero" id="statementMark">better feed</span></span></span>
           <span class="line"><span>grows stronger farms</span></span>
         </p>
       </div>
 
       <div class="hero__cluster" id="heroCluster" aria-hidden="true"></div>
 
+      <div class="hero__marquee" id="heroMarquee" aria-hidden="true">
+        <div class="marquee__track"></div>
+      </div>
+
       <button class="scroll-cue" id="scrollCue" aria-label="Scroll down">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v13M6 12l6 6 6-6"/></svg>
+        <span class="scroll-cue__btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v13M6 12l6 6 6-6"/></svg></span>
+        <span class="scroll-cue__label">Scroll to explore</span>
       </button>
     </div>
   </section>
@@ -117,38 +111,82 @@
   <section class="about" id="about">
     <div class="container">
       <div class="about__intro">
-        <h2 class="h-60 reveal">Feed made with care, <em>from field to farm</em></h2>
+        <h2 class="h-60 reveal">Feed made with care, <span class="mark">from field to farm</span></h2>
         <p class="t-24 reveal">Champasen produces balanced, high-quality feed for poultry, livestock and aquaculture, and delivers it to farms and distributors across the region and beyond.</p>
         <a href="#what-we-do" class="btn btn--purple reveal">About Champasen</a>
       </div>
 
-      <div class="feature reveal">
-        <div class="feature__text">
-          <h3 class="h-40">Quality you can trace</h3>
-          <p class="t-24r">Every batch is formulated by nutrition specialists, made from carefully selected raw materials and tested before it leaves our mill.</p>
-          <a href="#about" class="btn btn--ink">Our standards</a>
-        </div>
-        <div class="feature__img">
-          <img src="assets/img/warehouse.jpg" alt="Champasen team members checking stock in the warehouse" loading="lazy" data-parallax="8">
-        </div>
-      </div>
-
-      <div class="quote-card reveal">
-        <p class="h-40">Strong nutrition means <span class="hl">healthier herds and flocks, better yields and more reliable incomes</span> for the farmers we serve.</p>
-        <a href="#what-we-do" class="dot-link">
-          <span class="dot-link__dot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5"/></svg></span>
-          <span>Explore our products</span>
-        </a>
-      </div>
     </div>
     <div class="about__petals" aria-hidden="true"></div>
+  </section>
+
+  <!-- ============ OUR JOURNEY (pinned horizontal timeline) ============ -->
+  <section class="journey" id="journey" aria-labelledby="journeyTitle">
+    <div class="journey__head container">
+      <p class="eyebrow">Our journey</p>
+      <h2 class="h-60" id="journeyTitle">From one mill to <span class="mark">12 export markets</span></h2>
+    </div>
+    <div class="journey__viewport">
+      <div class="journey__track" id="journeyTrack">
+        <div class="journey__line" aria-hidden="true"><span class="journey__fill" id="journeyFill"></span></div>
+        <article class="milestone">
+          <span class="milestone__year">2001</span><span class="milestone__dot" aria-hidden="true"></span>
+          <div class="milestone__card">
+            <div class="milestone__img"><img src="assets/img/warehouse.jpg" alt="Champasen team in the feed warehouse" loading="lazy"></div>
+            <h3>Where it all began</h3>
+            <p>Champasen opens its first feed mill, supplying poultry farms in the local area.</p>
+          </div>
+        </article>
+        <article class="milestone">
+          <span class="milestone__year">2006</span><span class="milestone__dot" aria-hidden="true"></span>
+          <div class="milestone__card">
+            <div class="milestone__img"><img src="assets/img/truck-export.jpg" alt="A truck loaded with feed bags for export" loading="lazy"></div>
+            <h3>First export shipment</h3>
+            <p>Our first trucks cross the border, starting a regional export business.</p>
+          </div>
+        </article>
+        <article class="milestone">
+          <span class="milestone__year">2012</span><span class="milestone__dot" aria-hidden="true"></span>
+          <div class="milestone__card">
+            <div class="milestone__img"><img src="assets/img/poultry-feeding.jpg" alt="Hens eating feed pellets from a trough" loading="lazy"></div>
+            <h3>New line and quality lab</h3>
+            <p>A second production line doubles capacity, and every batch is now tested in-house.</p>
+          </div>
+        </article>
+        <article class="milestone">
+          <span class="milestone__year">2017</span><span class="milestone__dot" aria-hidden="true"></span>
+          <div class="milestone__card">
+            <div class="milestone__img"><img src="assets/img/cattle.jpg" alt="Cattle feeding at a feedlot" loading="lazy"></div>
+            <h3>Livestock and aqua ranges</h3>
+            <p>We launch feeds for cattle, pigs, fish and shrimp alongside our poultry range.</p>
+          </div>
+        </article>
+        <article class="milestone">
+          <span class="milestone__year">2021</span><span class="milestone__dot" aria-hidden="true"></span>
+          <div class="milestone__card">
+            <div class="milestone__img"><img src="assets/img/hero-farmer.jpg" alt="A specialist checking chickens on a partner farm" loading="lazy"></div>
+            <h3>10 export markets</h3>
+            <p>Our logistics network reaches ten markets by road and sea.</p>
+          </div>
+        </article>
+        <article class="milestone milestone--today">
+          <span class="milestone__year">Today</span><span class="milestone__dot" aria-hidden="true"></span>
+          <div class="milestone__card">
+            <img src="assets/logo/mark-light.png" alt="" class="milestone__mark">
+            <h3>Growing with 3,000+ partners</h3>
+            <p>500k tonnes of feed a year, delivered to 12 export markets, and still growing.</p>
+            <a href="#contact" class="btn btn--gold">Work with us</a>
+          </div>
+        </article>
+      </div>
+    </div>
   </section>
 
   <!-- ============ IMPACT NUMBERS ============ -->
   <section class="impact" id="impact">
     <img src="assets/logo/mark-small.png" alt="" class="impact__mark" aria-hidden="true">
     <div class="container">
-      <h2 class="h-60 reveal">Growing together, <em>year after year</em></h2>
+      <h2 class="h-60 reveal">Growing together, <span class="mark">year after year</span></h2>
       <div class="stats">
         <div class="stat reveal"><span class="stat__num" data-count="25" data-suffix="+">0</span><span class="stat__label">Years of feed expertise</span></div>
         <div class="stat reveal"><span class="stat__num" data-count="12">0</span><span class="stat__label">Export markets served</span></div>
@@ -243,10 +281,7 @@
         <img src="assets/logo/mark-small.png" alt="" class="logo__mark"><img src="assets/logo/wordmark.png" alt="Champasen" class="logo__word">
       </a>
       <address>Champasen Co., Ltd.<br>Your address line here<br>hello@champasen.com</address>
-      <form class="search" role="search" onsubmit="return false">
-        <input type="search" placeholder="Search..." aria-label="Search">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="7"/><path d="M16 16l5 5"/></svg>
-      </form>
+      <div class="socials socials--footer"></div>
     </div>
     <div class="footer__links">
       <h3>Useful links</h3>
@@ -256,11 +291,6 @@
         <li><a href="#">Export markets</a></li><li><a href="#">Policies</a></li>
         <li><a href="#">Careers</a></li><li><a href="#">Contact us</a></li>
       </ul>
-    </div>
-    <div class="follow">
-      <h3>Follow us</h3>
-      <p>Follow Champasen on social media for news from our mill, our partners and the farms we serve.</p>
-      <div class="socials"></div>
     </div>
   </div>
   <div class="container footer__legal">
